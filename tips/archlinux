@@ -1,0 +1,6 @@
+Find out which package you should download to have a program:
+	$ pacman -S pkgtools
+	$ sudo pkgfile --update # Update pkgtools database
+
+	$ pkgfile -b -v -- finger
+	> extra/netkit-bsd-finger (0.17-5) : /usr/bin/finger
