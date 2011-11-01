@@ -1,0 +1,10 @@
+#!/bin/bash
+# DESCRIPTION Sincroniza os arquivos da faculdade no diretório local com o iPod. O nome do programa vem do fato do Centro de Informática da UFPE (onde estudo) ser conhecido como CIn
+
+ANO='2009'
+SEMESTRE='1'
+
+ORIGEM="/home/mailson/ufpe/$ANO/$SEMESTRE/"
+DESTINO="/media/MAILSON/home/mailson/ufpe/$ANO/$SEMESTRE/"
+
+rsync -av --no-group --delete $ORIGEM $DESTINO

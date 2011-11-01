@@ -1,0 +1,12 @@
+#!/bin/bash
+# DESCRIPTION Anota recados
+# USO: recados de para recado
+
+arquivo="$HOME/recados"
+
+if [ $# -gt 2 ]; then
+    echo -n `date +"%a, %d/%m/%Y %H:%M"` >> $arquivo
+    echo " - $@" >> $arquivo
+else
+    cat $arquivo | sed 's/\(\w\{3\}, [0-9]\{2\}\/[0-9]\{2\}\/[0-9]\{4\}\) \([0-9]\{2\}:[0-9]\{2\}\) - \(\w\{1,\}\) \(\w\{1,\}\) \(.*\)/\1 às \2\nDe: \3\nPara: \4\n\5\n/g'
+fi

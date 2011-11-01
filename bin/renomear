@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# TODO renomear -x arquivo.mp3 wav
+# TODO renomear -b arquivo.mp3 musica
+# TODO renomear arquivo.mp3 musica.wav
+# TODO renomear -b arquivo.tar.gz --extensao=tar.gz compactado
+# TODO renomear -h
+# TODO renomear -f
+# TODO -x = renomear apenas extensao; -b = renomear basename (mantém a extensao)
+# TODO -h = ajuda; --extensao=define manualmente a extensao do arquivo
+
+# TODO Verificar se o arquivo de destino existe
+
+ajuda() {
+    echo "Usos:"
+    echo "    renomear -x arquivo.ext txe - Modifica a extensão para txe"
+    echo "    renomear -b arquivo.ext file - Modifica apenas o basename, mantendo a extensão"
+    echo "    renomear arquivo.ext file.txe - Renomeia todo o nome do arquivo. O mesmo que usar mv arquivo.ext file.txe"
+}
+
+case $1 in
+    -x);;
+    -b);;
+    -h);;
+    --help);;
+    *)
+esac

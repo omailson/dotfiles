@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ $# != 0 ]; then
+    case $1 in
+        !|+|-) echo "$*" >> $HOME/misc/backup;;
+        *) echo "  $*" >> $HOME/misc/backup;;
+    esac
+    tail -n 1 $HOME/misc/backup
+else
+    tail --lines=+13 $HOME/misc/backup
+fi
