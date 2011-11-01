@@ -1,0 +1,32 @@
+#!/bin/bash
+# DESCRIPTION Uma maneira simples de conectar-se aos servidores SSH
+# sssh host_codename [USER]
+# TODO sssh -i codename host [default_user] -> inclui um host
+# TODO sssh -x codename -> exclui um host
+# TODO sssh -h|--help -> ajuda
+# TODO sssh -l -> lista os hosts (faz um cat no arquivo de hosts)
+
+conf="$HOME/.sssh_hosts"
+host=`cat $conf | grep "^$1 "`
+
+# Caso exista um host com o codename passado
+if [ -n "$host" ]; then
+    codename="$1"
+    address=`echo $host | sed 's/^\([a-z0-9]*\) \([^ ]*\) \([^ ]*\)$/\2/g'`
+
+    if [ $# -lt 2 ]; then
+        ssh_user=`echo $host | grep -o '\([^ ]*\)$'`
+        # TODO verificar se o user nao eh o endereco
+    else
+        ssh_user="$2"
+    fi
+
+    # Se o não foi passado um nome de usuário (usa o default)
+    if [ -n "$ssh_user" ]; then
+        ssh $ssh_user@$address
+    else
+        ssh $address
+    fi
+else
+    echo "Host não encontrado"
+fi

@@ -1,0 +1,4 @@
+#!/bin/bash
+# Search for string in all specified files of the current directory (recursive)
+
+grep --color=auto -n "$1" `find . -name "$2"`

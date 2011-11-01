@@ -1,0 +1,19 @@
+#!/bin/bash
+# DESCRIPTION
+
+# Copie o codigo abaixo para o .bashrc
+# alias:path,anotheralias:anotherpath
+FOLDERS="ubee:/home/mailson/dev/django/svn/trunk/ubee,dropbox:/home/mailson/Dropbox"
+
+# DO NOT EDIT BELOW THIS LINE
+for folder in $(echo $FOLDERS | tr "," " ")
+do
+	foldername=$(echo $folder | cut -d : -f 1)
+	folderpath=$(echo $folder | cut -d : -f 2)
+
+	if [ "$1" == "$foldername" ]
+	then
+		echo "$folderpath"
+		break
+	fi
+done

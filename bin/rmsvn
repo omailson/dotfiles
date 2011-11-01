@@ -1,0 +1,4 @@
+#!/bin/bash
+# Recursively delete .svn directories
+
+rm -rf `find . -type d -name .svn`

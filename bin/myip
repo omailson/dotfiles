@@ -1,0 +1,4 @@
+#!/bin/bash
+# DESCRIPTION Mostra o IP externo
+
+echo $(wget -qO- http://automation.whatismyip.com/n09230945.asp)

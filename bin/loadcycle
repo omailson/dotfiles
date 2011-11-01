@@ -1,0 +1,4 @@
+#!/bin/bash
+echo ----- >> $HOME/loadcycle.log
+date >> $HOME/loadcycle.log
+sudo smartctl -d ata -a /dev/sda |  grep '^193' | sed 's/.* \([0-9]\+\)$/\1/' >> $HOME/loadcycle.log

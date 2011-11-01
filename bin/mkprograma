@@ -1,0 +1,36 @@
+#!/bin/bash
+# DESCRIPTION Cria um arquivo de texto para armazenar o código de algum programa.
+
+ajuda() {
+    echo "Uso: mkprograma tipo arquivo"
+    echo
+    echo "Os tipos podem ser:"
+    echo "bash - Bash Script"
+    echo "python - Programa Python"
+}
+
+case $1 in
+    bash) 
+        header='#!/bin/bash'
+        content='# DESCRIPTION '
+        ;;
+    python) 
+        header='#!/usr/bin/env python'
+        extension='py'
+        ;;
+    php)
+        header='#!/usr/bin/php -q'
+        content="<?php \
+        \
+        ?>"
+        extension='php'
+        ;;
+    --help) ajuda; exit;;
+    *) ajuda; exit
+esac
+
+# TODO Verificar se o arquivo existe ou não. Se existir, sai do programa. O usuário precisa excluí-lo manualmente
+echo $header > $2
+chmod +x $2
+echo $content >> $2
+vi $2

@@ -1,0 +1,35 @@
+#!/bin/bash
+# TODO Substituir o * abaixo por {*.JPG,*.AVI}
+
+# TODO Opções de entrada arruma-foto.sh -n -f /media/sd/100CANON -t /home/mailson/fotos
+# TODO n: Apenas exibe as mensagens na tela mas não faz nada
+# TODO s: Não exibe mensagens na tela
+# TODO f: Origem
+# TODO t: Destino
+# TODO h: ajuda
+# TODO x: Exclui os arquivos de -f apos executar a operação
+# TODO --help: ajuda
+
+total=`ls *.{JPG,AVI} | wc -l`
+
+zenity --info --text="As $total fotos da pasta serão organizadas por data." --title="Organizador de Fotos"
+#test -d "fotos" || mkdir "fotos" # Verifica se existe a pasta fotos e cria-a caso não exista
+caminho=`zenity --file-selection --directory --filename="$HOME/" --title="Escolha a pasta onde os arquivos serão salvos"`"/" || zenity --error --text="Você precisa selecionar uma pasta"
+#test -d $caminho || {zenity --error --text="A pasta não existe. Tente novamente"; exit}
+#test -w $caminho || (zenity --error --text="Você não tem permissão de escrita nesta pasta"; exit)
+#excluir=`zenity --question --text="Você deseja excluir os arquivos ao transferir? Se ocorrer algum erro as fotos não poderão ser recuperadas."`
+
+j=0
+(for i in {*.JPG,*.AVI}; do
+#for i in *; do
+    pasta=`stat -c%y $i | cut -d" " -f1 | sed s/-/_/g`
+    test -d "$caminho$pasta" || mkdir "$caminho$pasta"
+    #echo -ne "Copiando o arquivo \e[35;1m$i\e[m para a pasta \e[34;1m$pasta\e[m; \e[31;1m"
+    cp $i "$caminho$pasta"
+    #echo -e "\e[mOK"
+    let j++
+    perc=$((j*100/total))
+    echo $perc
+done) | zenity --progress --title="Copiando Fotos..." --text="Copiando $total fotos." --auto-close
+
+zenity --info --text="Possivelmente as fotos foram copiadas com sucesso."

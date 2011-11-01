@@ -1,0 +1,31 @@
+.\"Created with GNOME Manpages Editor Wizard
+.\"http://sourceforge.net/projects/gmanedit2
+.TH mkprograma 1 "May 6, 2009" "" "mkprograma"
+
+.SH NOME
+mkprograma \- script shell para facilitar a criação de novos aplicativos rápidos.
+
+.SH SINOPSE
+.B mkprograma
+.I tipo arquivo
+.br
+
+.SH DESCRIÇÃO
+.B mkprograma
+serve para criar novos scripts rapidamente.
+.PP
+O aplicativo gera um novo arquivo executável com um template do código o qual deseja-se inserir. Após isso ele executa o \fBvim\fB para o usuário escrever o programa.
+
+.SH TIPOS
+.B bash
+\- Cria um novo arquivo com o template de um scritpt shell
+.br
+.B python
+\- Template para uma aplicação em Python
+
+.SH EXEMPLO
+.DT .RS 
+.B mkprograma
+.I bash meu-script-shell
+.RS 
+Cria um arquivo chamado \fImeu-script-shell\fR, torna-o executável, insere um template para scripts shell e abre-o pelo vim.
