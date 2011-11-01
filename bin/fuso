@@ -1,8 +1,0 @@
-#!/bin/bash
-# fuso
-#
-# Este programa serve para ajudar na consulta dos fusos horários
-#
-# Versão 0.1:	Nada ainda
-# TODO fuso -h 19:43 # Seta a hora de estudo para as 19:43
-# TODO fuso MST # O horário atual no MST (Mountain Standard Time)

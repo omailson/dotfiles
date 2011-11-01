@@ -1,7 +1,0 @@
-#!/bin/bash
-# DESCRIPTION
-
-case "$1" in
-	--battery)		# Mostra a percentagem da bateria
-		acpi | grep -o "[0-9]\{1,3\}%";;
-esac

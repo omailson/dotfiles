@@ -1,4 +1,0 @@
-#!/bin/bash
-# Compare a conf file and its .pacnew using vimdiff
-
-vimdiff "$1" "$1".pacnew
