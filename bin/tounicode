@@ -1,25 +1,18 @@
 #!/bin/bash
+#
+# tounicode - Recursively converts encoding from latin (iso8859-1) to unicode
+#
+# Author: Mailson Lira <mailson@gmail.com>
+#
+#					----------------------------------------
+#
+# History:
+# 	v1.0 2007-11-22
+#		- Initial version
+#	v2.0a 2009-01-11
+#		- Use find to do the job
+#
+################################################################################
 
-comando() {
-for i in $*; do
-    iconv -t utf8 -f iso8859-1 "$i" --output "$i.converted" && rm "$i" && mv "$i.converted" "$i"
-done
-}
-
-recursao() {
-for a in *; do
-    if [ -d "$a" ]; then
-        cd "$a"
-        recursao *
-        cd ..
-    else
-        comando "$a"
-    fi
-done
-}
-
-if [ "$1" = '-r' ]; then
-    recursao *
-else
-    comando "$*"
-fi
+find $1 -type f -exec iconv -f iso8859-1 -t utf8 {} --output {}.converted \; \
+				-exec rm {} \; -exec mv {}.converted {} \;
