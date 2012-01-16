@@ -5,6 +5,11 @@ export PATH="$DOTFILES_PATH"/bin:$PATH
 
 PS1='\[\e[0;31m\]---\[\e[m\]\n\[\e[0;32m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\]\[\e[1;37m\]$(__git_ps1 " (%s)")\[\e[m\]\n\[\e[1;32m\]\$\[\e[m\] '
 
+# Sudo autocomplete
+if [ -f /etc/bash_completion ]; then
+. /etc/bash_completion
+fi
+
 source "$DOTFILES_PATH/sources/aliases.bash"
 
 # vim:ft=sh
