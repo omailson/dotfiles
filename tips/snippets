@@ -1,0 +1,51 @@
+Search for string in multiple files
+	grep 'main' `find . -name '*.java'`
+
+Restart X
+	Option 1:
+	-Create script RestartX.sh-
+	#!/bin/bash
+	sudo kill `cat /tmp/.X0-lock`
+	startx 
+
+	-then-
+	nohup RestartX.sh
+
+	Option 2:
+	change 'startx' for 'telinit 5' on Option 1
+
+	Option 3:
+	kill X
+	su
+	kill -9 `cat /tmp/.X0-lock`
+	restart X
+	startx &
+
+Num lock always on
+	sudo vim /usr/share/config/kdm/Xsetup
+	numlockx on
+
+New httpd host
+	sudo vim /etc/httpd/conf/extra/httpd-vhosts.conf
+	sudo vim /etc/hosts
+	sudo /etc/rc.d/httpd restart
+
+Disk space
+	df -h
+	du -h
+
+Compressed files
+	List archive contents
+		unzip -l file.zip
+		tar -tvf file.tar
+		tar -ztvf file.tar.gz
+		unrar vb file.rar
+	Extract
+		unzip -aq file.zip
+		tar -xf file.tar
+		tar -zxf file.tar.gz
+		unrar x file.rar
+	Compress
+		zip -9rq file.zip dir/
+		tar -cf file.tar dir/
+		tar -zcf file.tar.gz dir/

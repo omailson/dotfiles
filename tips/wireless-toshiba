@@ -1,0 +1,4 @@
+Configurando o wireless no meu qosmio
+AUR: rtl8192se rtl8192se-firmware
+modprobe r8192se_pci
+pacman -S networkmanager kdeplasma-applets-networkmanagement
