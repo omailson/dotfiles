@@ -11,5 +11,6 @@ if [ -f /etc/bash_completion ]; then
 fi
 
 source "$DOTFILES_PATH/sources/aliases.bash"
+source "$DOTFILES_PATH/sources/funcoeszz.bash"
 
 # vim:ft=sh
