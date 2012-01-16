@@ -6,7 +6,6 @@ alias genius='genius --nomixed' # Inicia o genius de forma que não mostre fraç
 alias cakepath='export PATH=$PATH:`pwd`/cake/console'
 alias python='python2'
 alias xx='chmod +x'
-# alias ruby='ruby-1.8'
 
 # Git aliases
 alias k='gitk --all'
