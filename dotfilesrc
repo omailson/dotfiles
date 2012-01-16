@@ -12,5 +12,6 @@ fi
 
 source "$DOTFILES_PATH/sources/aliases.bash"
 source "$DOTFILES_PATH/sources/funcoeszz.bash"
+source "$DOTFILES_PATH/sources/gotofolder.bash"
 
 # vim:ft=sh
