@@ -1,0 +1,5 @@
+SOURCE="${BASH_SOURCE[0]}"
+export DOTFILES_PATH=`dirname $SOURCE`
+export PATH="$DOTFILES_PATH"/bin:$PATH
+
+# vim:ft=sh
