@@ -1,4 +1,5 @@
-SOURCE="${BASH_SOURCE[0]}"
+# Add dotfiles/bin to path
+SOURCE="${BASH_SOURCE[0]}" # Path of this sourced file
 export DOTFILES_PATH=`dirname $SOURCE`
 export PATH="$DOTFILES_PATH"/bin:$PATH
 
