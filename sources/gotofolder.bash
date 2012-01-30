@@ -13,7 +13,7 @@
 # echo "alias:path/to/local/folder" >> .goto
 
 function goto() {
-	folders=""
+	folders=$(echo $GOTOFOLDERS | tr "," " ")
 	if [ -e .goto -a -e "$HOME"/.goto ]
 	then
 		folders=$(cat .goto "$HOME"/.goto)
