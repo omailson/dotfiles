@@ -3,7 +3,7 @@ SOURCE="${BASH_SOURCE[0]}" # Path of this sourced file
 export DOTFILES_PATH=`dirname $SOURCE`
 export PATH="$DOTFILES_PATH"/bin:$PATH
 
-PS1='\[\e[0;31m\]---\[\e[m\]\n\[\e[0;32m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\]\[\e[1;37m\]$(__git_ps1 " (%s)")\[\e[m\]\n\[\e[1;32m\]\$\[\e[m\] '
+PS1='\[\e[0;31m\]---\[\e[m\]\n\[\e[0;32m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\]\[\e[1;37m\]$(__git_ps1 " (%s)")$(__environment_name " [%s]")\[\e[m\]\n\[\e[1;32m\]\$\[\e[m\] '
 
 # Sudo autocomplete
 complete -cf sudo
@@ -11,5 +11,6 @@ complete -cf sudo
 source "$DOTFILES_PATH/sources/aliases.bash"
 source "$DOTFILES_PATH/sources/funcoeszz.bash"
 source "$DOTFILES_PATH/sources/gotofolder.bash"
+source "$DOTFILES_PATH/sources/environment.bash"
 
 # vim:ft=sh
