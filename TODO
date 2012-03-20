@@ -1,0 +1,7 @@
+http://www.linuxtopia.org/online_books/advanced_bash_scripting_guide/textproc.html
+http://stackoverflow.com/questions/1862510/how-can-the-last-commands-wall-time-be-put-in-the-bash-prompt
+http://www.askapache.com/linux/bash-power-prompt.html
+
+.inputrc
+"\e[A": history-search-backward
+"\e[B": history-search-forward
