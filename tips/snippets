@@ -49,3 +49,6 @@ Compressed files
 		zip -9rq file.zip dir/
 		tar -cf file.tar dir/
 		tar -zcf file.tar.gz dir/
+
+Full path to a file:
+	readlink -f file
