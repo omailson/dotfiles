@@ -22,7 +22,7 @@ function __repeat() {
 PS1_SEPARATOR='$(__CK "0;37" "$(__repeat ${COLUMNS:-3} ―)")'
 PS1_USERINFO='$(__CK "0;32" "\u")$(__CK "1;37" "@")$(__CK "0;32" "\h")'
 PS1_FOLDERINFO='$(__CK "1;34" "\w")'
-PS1_GIT='$(__CK "1;37" "$(__git_ps1 " (%s)")")'
+PS1_GIT='$(__CK "1;37" "$(__git_ps1 " (%s)" 2> /dev/null)")'
 PS1_ENV='$(__CK "1;37" "$(__environment_name " [%s]")")'
 PS1_INPUT='\[\e[1;32m\]\$\[\e[m\]' # Ctrl+A won't work on long lines if using __CK
 PS1="$PS1_SEPARATOR\n$PS1_USERINFO $PS1_FOLDERINFO$PS1_GIT$PS1_ENV\n$PS1_INPUT "
