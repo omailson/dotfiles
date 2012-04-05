@@ -1,0 +1,12 @@
+ENV_NAME="okular"
+
+export INSTALL_PREFIX=$PWD/install
+export PATH=$INSTALL_PREFIX/bin:$PATH
+export KDEDIRS=$INSTALL_PREFIX:$(kde4-config --prefix)
+
+alias cmake="cmake -DCMAKE_INSTALL_PREFIX=$INSTALL_PREFIX"
+
+# cmake CMakeLists.txt
+# make
+# make install
+# kbuildsycoca4

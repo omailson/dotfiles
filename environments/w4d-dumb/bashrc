@@ -1,0 +1,8 @@
+ENV_NAME="w4d-dumb"
+
+export LD_LIBRARY_PATH=/home/mailson/QtSDK/Simulator/Qt/gcc/lib
+export PATH=/home/mailson/QtSDK/Simulator/Qt/gcc/bin:$PATH
+export QTDIR=/home/mailson/QtSDK/Simulator/Qt/gcc
+alias qmake='qmake -r -spec linux-g++ CONFIG+=debug'
+alias make='make -j 33'
+alias ack='ack --ignore-dir=.tmp --ignore-dir=qjson --nomake --pager="less -r"'
