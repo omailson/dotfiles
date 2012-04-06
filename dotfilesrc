@@ -35,4 +35,6 @@ source "$DOTFILES_PATH/sources/funcoeszz.bash"
 source "$DOTFILES_PATH/sources/gotofolder.bash"
 source "$DOTFILES_PATH/sources/environment.bash"
 
+source "$DOTFILES_PATH/sources/completion.bash"
+
 # vim:ft=sh

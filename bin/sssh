@@ -1,32 +1,103 @@
 #!/bin/bash
-# DESCRIPTION Uma maneira simples de conectar-se aos servidores SSH
+# A simple way of connecting to SSH servers
+#
+# Usage:
 # sssh host_codename [USER]
-# TODO sssh -i codename host [default_user] -> inclui um host
-# TODO sssh -x codename -> exclui um host
-# TODO sssh -h|--help -> ajuda
-# TODO sssh -l -> lista os hosts (faz um cat no arquivo de hosts)
+#
+# Configuration file:
+# codename host [username]
 
-conf="$HOME/.sssh_hosts"
-host=`cat $conf | grep "^$1 "`
+CONF="$HOME/.sssh_hosts"
 
-# Caso exista um host com o codename passado
-if [ -n "$host" ]; then
-    codename="$1"
-    address=`echo $host | sed 's/^\([a-z0-9]*\) \([^ ]*\) \([^ ]*\)$/\2/g'`
+_sssh_connect() {
+    local host address ssh_user
 
-    if [ $# -lt 2 ]; then
-        ssh_user=`echo $host | grep -o '\([^ ]*\)$'`
-        # TODO verificar se o user nao eh o endereco
+    host=$(cat "$CONF" | grep "^$1 ")
+    if [ -n "$host" ]; then
+        address=$(echo "$host" | cut -d ' ' -f 2)
+
+        if [ $# -lt 2 ]; then
+            ssh_user=$(echo "$host" | cut -d ' ' -f 3)
+        else
+            ssh_user="$2"
+        fi
+
+        # Use default user if none could be found
+        if [ -n "$ssh_user" ]; then
+            ssh $ssh_user@$address
+        else
+            ssh $address
+        fi
     else
-        ssh_user="$2"
+        echo "Host not found"
+        return 1
     fi
+}
 
-    # Se o não foi passado um nome de usuário (usa o default)
-    if [ -n "$ssh_user" ]; then
-        ssh $ssh_user@$address
+_sssh_help() {
+cat << EOF
+`basename $0`:
+    A simple way of connecting to SSH servers
+
+    `basename $0` codename [user]
+    `basename $0` -i codename host [user]
+    `basename $0` -x codename
+    `basename $0` -l
+    `basename $0` --help
+
+    Given a codename, connects to the server associated with it using a default
+    username or the user passed as argument.
+
+      -i	Insert a new host to the bookmark
+      -x	Remove a saved host
+      -l	List saved connections
+      -h	Help
+EOF
+}
+
+_sssh_insert() {
+    if [ "$#" -gt 1 ]; then
+        echo "$@" >> "$CONF"
     else
-        ssh $address
+        echo "Insufficient arguments"
+        return 1
     fi
-else
-    echo "Host não encontrado"
-fi
+}
+
+_sssh_remove() {
+    if [ "$#" -eq 1 ]; then
+        local host=$(cat "$CONF" | grep "^$1 ")
+        if [ -n "$host" ]; then
+            local tmpfile=$(mktemp)
+            cat "$CONF" > "$tmpfile"
+            sed "/^${1} /d" "$tmpfile" > "$CONF"
+            rm "$tmpfile"
+        else
+            echo "Host not found"
+            return 1
+        fi
+    else
+        echo "Wrong arguments"
+        return 1
+    fi
+}
+
+case "$1" in
+    -i)
+        shift
+        _sssh_insert "$@"
+        ;;
+    -x)
+        shift
+        _sssh_remove "$@"
+        ;;
+    -l)
+        cat "$CONF"
+        ;;
+    -h|--help)
+        _sssh_help
+        ;;
+    *)
+        _sssh_connect "$@"
+        ;;
+esac
