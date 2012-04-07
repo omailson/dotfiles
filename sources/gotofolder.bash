@@ -13,7 +13,7 @@
 # echo "alias:path/to/local/folder" >> .goto
 
 goto() {
-	local folders foldername folderpath gotopath
+	local folders foldername folderpath gotopath folder
 	folders=$(echo $GOTOFOLDERS | tr "," '\n')
 
 	gotopath="$PWD"
@@ -21,14 +21,13 @@ goto() {
 	do
 		if [ -e "$gotopath"/.goto ]
 		then
-			folders="$folders"$'\n'$(cat "$gotopath"/.goto)
+			folders="$folders"$'\n'$(paste -d : <(cat "$gotopath"/.goto | cut -d : -f 1) <(cat "$gotopath"/.goto | cut -d : -f 2 | xargs -I {} readlink -f "$gotopath"/{}))
 		fi
 
 		test "$gotopath" = $HOME && break
 
 		gotopath=$(readlink -f "$gotopath"/..)
 	done
-
 
 	for folder in $folders
 	do
