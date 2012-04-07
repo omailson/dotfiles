@@ -2,3 +2,8 @@
 # Compare a conf file and its .pacnew using vimdiff
 
 vimdiff "$1" "$1".pacnew
+
+echo -n "Remove .pacnew? "
+read opt
+
+test "$opt" = "y" && sudo rm "$1".pacnew
