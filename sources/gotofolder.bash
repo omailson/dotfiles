@@ -12,18 +12,23 @@
 # Example:
 # echo "alias:path/to/local/folder" >> .goto
 
-function goto() {
-	folders=$(echo $GOTOFOLDERS | tr "," " ")
-	if [ -e .goto -a -e "$HOME"/.goto ]
-	then
-		folders=$(cat .goto "$HOME"/.goto)
-	elif [ -e .goto ]
-	then
-		folders=$(cat .goto)
-	elif [ -e "$HOME"/.goto ]
-	then
-		folders=$(cat "$HOME"/.goto)
-	fi
+goto() {
+	local folders foldername folderpath gotopath
+	folders=$(echo $GOTOFOLDERS | tr "," '\n')
+
+	gotopath="$PWD"
+	while [ 1 ]
+	do
+		if [ -e "$gotopath"/.goto ]
+		then
+			folders="$folders"$'\n'$(cat "$gotopath"/.goto)
+		fi
+
+		test "$gotopath" = $HOME && break
+
+		gotopath=$(readlink -f "$gotopath"/..)
+	done
+
 
 	for folder in $folders
 	do
@@ -38,3 +43,5 @@ function goto() {
 		fi
 	done
 }
+
+export -f goto
