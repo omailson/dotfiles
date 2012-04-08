@@ -27,9 +27,6 @@ PS1_ENV='$(__CK "1;37" "$(__environment_name " [%s]")")'
 PS1_INPUT='\[\e[1;32m\]\$\[\e[m\]' # Ctrl+A won't work on long lines if using __CK
 PS1="$PS1_SEPARATOR\n$PS1_USERINFO $PS1_FOLDERINFO$PS1_GIT$PS1_ENV\n$PS1_INPUT "
 
-# Sudo autocomplete
-complete -cf sudo
-
 source "$DOTFILES_PATH/sources/aliases.bash"
 source "$DOTFILES_PATH/sources/funcoeszz.bash"
 source "$DOTFILES_PATH/sources/gotofolder.bash"
