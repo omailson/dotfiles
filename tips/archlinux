@@ -4,3 +4,6 @@ Find out which package you should download to have a program:
 
 	$ pkgfile -b -v -- finger
 	> extra/netkit-bsd-finger (0.17-5) : /usr/bin/finger
+
+Order packages by size (aka using sort):
+	$ ls -lh /var/cache/pacman/pkg/ | tail -n+2 | sort -k5,5hr | less
