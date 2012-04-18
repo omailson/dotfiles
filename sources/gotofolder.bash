@@ -24,7 +24,7 @@ goto() {
 			folders="$folders"$'\n'$(paste -d : <(cat "$gotopath"/.goto | cut -d : -f 1) <(cat "$gotopath"/.goto | cut -d : -f 2 | xargs -I {} readlink -f "$gotopath"/{}))
 		fi
 
-		test "$gotopath" = $HOME && break
+		test "$gotopath" = $HOME -o "$gotopath" = "/" && break
 
 		gotopath=$(readlink -f "$gotopath"/..)
 	done

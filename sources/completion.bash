@@ -51,7 +51,7 @@ _goto_comp() {
 			folders="$folders"$'\n'$(cat "$gotopath"/.goto | cut -d : -f 1)
 		fi
 
-		test "$gotopath" = $HOME && break
+		test "$gotopath" = $HOME -o "$gotopath" = "/" && break
 
 		gotopath=$(readlink -f "$gotopath"/..)
 	done
