@@ -1,4 +1,4 @@
-alias vi='vim'
+alias vi='vim --cmd "let g:dotvim_vi = 1"'
 alias go='kde-open'
 alias agora='date +"%d/%m %H:%M"'
 alias genius='genius --nomixed' # Inicia o genius de forma que não mostre frações de forma mista
