@@ -19,7 +19,14 @@ function __repeat() {
 	printf -- $repeat_line
 }
 
-PS1_SEPARATOR='$(__CK "0;37" "$(__repeat ${COLUMNS:-3} ―)")'
+if [ -z "$DISPLAY" ]
+then
+	PS1_SEP="-"
+else
+	PS1_SEP="―"
+fi
+
+PS1_SEPARATOR='$(__CK "0;37" "$(__repeat ${COLUMNS:-3} ${PS1_SEP})")'
 PS1_USERINFO='$(__CK "0;32" "\u")$(__CK "1;37" "@")$(__CK "0;32" "\h")'
 PS1_FOLDERINFO='$(__CK "1;34" "\w")'
 PS1_GIT='$(__CK "1;37" "$(__git_ps1 " (%s)" 2> /dev/null)")'
