@@ -1,0 +1,9 @@
+ENV_NAME="qt5"
+QTSDKPATH="/home/mailson/build-qt/Qt5SDK"
+
+export LD_LIBRARY_PATH=$QTSDKPATH/qtbase/lib:$LD_LIBRARY_PATH
+export LIBRARY_PATH=$QTSDKPATH/qtbase/lib:$LIBRARY_PATH
+export PATH=$QTSDKPATH/qtbase/bin:$PATH
+export QTDIR=$QTSDKPATH/qtbase
+export QML_IMPORT_PATH=$QTSDKPATH/qtbase/imports/
+export QML_PLUGIN_PATH=$QTSDKPATH/qtbase/plugins/
