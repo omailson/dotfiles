@@ -1,4 +1,4 @@
-ENV_NAME="Qt5"
+ENV_NAME="qt5-build"
 
 export LD_LIBRARY_PATH=$PWD/qtbase/lib:$LD_LIBRARY_PATH
 export LIBRARY_PATH=$PWD/qtbase/lib:$LIBRARY_PATH
