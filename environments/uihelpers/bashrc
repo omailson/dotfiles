@@ -1,6 +1,6 @@
 ENV_NAME="uihelpers"
-QTSDKPATH="/home/mailson/build-qt/Qt5SDK"
 
+#export QTSDKPATH=/path/to/qt5sdk
 export LD_LIBRARY_PATH=$PWD/lib:$LD_LIBRARY_PATH
 
 export LD_LIBRARY_PATH=$QTSDKPATH/qtbase/lib:$LD_LIBRARY_PATH

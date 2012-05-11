@@ -1,10 +1,11 @@
 ENV_NAME="qt5-build"
 
+# export QTSRC=/path/to/qt5source
+# export JOBS=number of jobs
+
 export LD_LIBRARY_PATH=$PWD/qtbase/lib:$LD_LIBRARY_PATH
 export LIBRARY_PATH=$PWD/qtbase/lib:$LIBRARY_PATH
 export QML_IMPORT_PATH=$PWD/qtbase/imports/
 export QML_PLUGIN_PATH=$PWD/qtbase/plugins/
 export PATH=$PWD/qtbase/bin:$PATH
 export QTDIR=$PWD/qtbase
-export QTSRC=$HOME/sources/qt5
-export JOBS=90
