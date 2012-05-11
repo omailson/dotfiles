@@ -41,4 +41,9 @@ source "$DOTFILES_PATH/sources/environment.bash"
 
 source "$DOTFILES_PATH/sources/completion.bash"
 
+if [ -f "$DOTFILES_PATH/local.bashrc" ]
+then
+	source "$DOTFILES_PATH/local.bashrc"
+fi
+
 # vim:ft=sh
