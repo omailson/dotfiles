@@ -1,0 +1,10 @@
+Build/run applications using Qt 5
+
+Sets Qt 5 environment
+
+Use:
+Set the environment var QTSDKPATH to where your Qt 5 SDK is located
+  $ export QTSDKPATH=/path/to/qt5sdk
+
+Source bashrc
+  $ source /dotfiles/environment/qt5/bashrc

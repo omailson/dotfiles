@@ -6,8 +6,3 @@ export KDEDIRS=$INSTALL_PREFIX:$(kde4-config --prefix)
 
 alias cmake="cmake -DCMAKE_INSTALL_PREFIX=$INSTALL_PREFIX"
 alias ack="ack --ignore-dir=install --ignore-dir=build"
-
-# cmake CMakeLists.txt
-# make
-# make install
-# kbuildsycoca4

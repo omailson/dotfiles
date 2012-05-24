@@ -1,0 +1,11 @@
+Environment to work on uihelpers and qtquickstyles
+
+Use:
+Set the path to your Qt 5 installation on QTSDKPATH
+  $ export QTSDKPATH=/path/to/qt5sdk
+
+Source bashrc
+  $ source /dotfiles/environment/uihelpers/bashrc
+
+Note:
+Use 'clean' to clean all git ignored files

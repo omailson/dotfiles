@@ -1,0 +1,18 @@
+Build Qt 5 from source
+
+Instructions:
+Create an empty directory where Qt 5 should be compiled to
+  $ mkdir qt5
+
+Set your Qt 5 source path and number of jobs to use on make
+  $ export QTSRC=/path/to/qt5source
+  $ export JOBS=3
+
+Source bashrc
+  $ source /dotfiles/environment/qt5-build/bashrc
+
+Execute local_configure.sh
+  $ ./local_configure.sh
+
+Then build
+  $ make -j3

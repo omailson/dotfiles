@@ -1,0 +1,27 @@
+Okular environment
+
+Also useful for a lot of KDE applications
+
+Use:
+Source 'bashrc' from your project's folder
+  $ cd /project/source
+  $ source /dotfiles/environment/okular/bashrc
+
+Tip: Create a symbolic link to the file
+
+Create a build directory
+  $ mkdir build
+
+Inside that, run 'cmake'
+  $ cd build
+  $ cmake ..
+
+Build and install
+  $ make
+  $ make install
+
+Rebuild KDE configuration cache
+  $ kbuildsycoca4
+
+Run
+  $ okular
