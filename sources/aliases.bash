@@ -5,6 +5,7 @@ alias genius='genius --nomixed' # Inicia o genius de forma que não mostre fraç
 alias cakepath='export PATH=$PATH:`pwd`/cake/console'
 alias python='python2'
 alias xx='chmod +x'
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo utilities-terminal || echo dialog-error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # ls aliases
 alias ls='ls --color=auto'
