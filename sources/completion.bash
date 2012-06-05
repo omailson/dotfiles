@@ -60,5 +60,16 @@ _goto_comp() {
 	return 0
 }
 
+_changemac_comp() {
+	local cur macs
+	COMPREPLY=()
+	cur="${COMP_WORDS[COMP_CWORD]}"
+
+	macs=$(changemac | cut -d ' ' -f 1)
+	COMPREPLY=($(compgen -W "$macs" -- ${cur}))
+	return 0
+}
+
 complete -F _sssh_comp sssh
 complete -F _goto_comp goto
+complete -F _changemac_comp changemac

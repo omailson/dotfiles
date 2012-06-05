@@ -1,0 +1,24 @@
+#!/bin/bash
+
+macs=$(cat "$MAC_FILE")
+
+if [ "$#" -lt 1 ]
+then
+	# No arguments. List available macs
+	echo "$macs"
+else
+	IFS=$'\n'
+	for m in $macs
+	do
+		name=$(echo "$m" | cut -d ' ' -f 1)
+		mac=$(echo "$m" | cut -d ' ' -f 2)
+
+		if [ "$name" = "$1" ]
+		then
+			ifconfig eth0 down
+			ifconfig eth0 hw ether "$mac"
+			ifconfig eth0 up
+			break
+		fi
+	done
+fi

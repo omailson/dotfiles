@@ -1,5 +1,10 @@
+# Qt 5 SDK
 export QTSDKPATH="/home/mailson/builds-qt/qt5"
 export QTSRC=$HOME/sources/qt5
 export JOBS=90
+
+# changemac
+# NAME aa:bb:cc:dd
+export MAC_FILE="/path/to/macs"
 
 # vim:ft=sh
