@@ -1,0 +1,10 @@
+# vim: ft=sh
+# cppath: copy the full path for the given argument to the clipboard
+#
+# usage:
+# 	$ cppath file.bin
+#		Will get the absolute path to 'file.bin' and copy to the clipboard
+#	$ cppath .
+#		Copy the absolute path to the current folder
+
+readlink -f "$1" | xclip -i
