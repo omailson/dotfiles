@@ -52,3 +52,7 @@ Compressed files
 
 Full path to a file:
 	readlink -f file
+
+Format to FAT32
+	sudo mkfs.vfat -F 32 -I /dev/sdb
+                          +----- create partition
