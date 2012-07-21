@@ -70,6 +70,17 @@ _changemac_comp() {
 	return 0
 }
 
+_tips_comp() {
+	local cur tips
+	COMPREPLY=()
+	cur="${COMP_WORDS[COMP_CWORD]}"
+
+	tips=$(tips)
+	COMPREPLY=($(compgen -W "$tips --help --edit" -- ${cur}))
+	return 0
+}
+
 complete -F _sssh_comp sssh
 complete -F _goto_comp goto
 complete -F _changemac_comp changemac
+complete -F _tips_comp tips

@@ -1,0 +1,35 @@
+#!/bin/bash
+
+tips_help() {
+	echo "Usage: tips [--edit|--help] subject"
+}
+
+if [ $# -lt 1 ]
+then
+	for f in "$DOTFILES_PATH"/tips/*
+	do
+		if [ -f "$f" ]
+		then
+			basename "$f"
+		fi
+	done
+else
+	PROGRAM="less"
+
+	case "$1" in
+		--edit)
+			PROGRAM="vim"
+			shift
+			;;
+		--help)
+			tips_help
+			exit 0
+			;;
+	esac
+
+	if [ -f "$DOTFILES_PATH/tips/$1" ]
+	then
+		$PROGRAM "$DOTFILES_PATH/tips/$1"
+	fi
+fi
+
