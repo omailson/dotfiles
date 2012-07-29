@@ -3,6 +3,10 @@ SOURCE="${BASH_SOURCE[0]}" # Path of this sourced file
 export DOTFILES_PATH=`dirname $SOURCE`
 export PATH="$DOTFILES_PATH"/bin:$PATH
 
+# Save bash history on the go
+shopt -s histappend
+PROMPT_COMMAND='history -a'
+
 # Changes text color and then reset color changes
 function __CK() {
 	printf "\033[$1m$2\033[m"
