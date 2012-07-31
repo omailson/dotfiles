@@ -1,0 +1,4 @@
+--type-set
+qml=.qml
+--type-set
+qmake=.pro,.pri

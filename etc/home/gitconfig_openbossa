@@ -1,0 +1,16 @@
+[url "git://anongit.kde.org/"]
+	insteadOf = kde:
+[url "git@git.kde.org:"]
+	pushInsteadOf = kde:
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+	ui = auto
+[user]
+	name = Mailson Menezes
+	email = mailson.menezes@openbossa.org
+[rebase]
+	stat = true
+[core]
+	pager = less -FRSX
