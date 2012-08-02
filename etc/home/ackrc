@@ -2,3 +2,4 @@
 qml=.qml
 --type-set
 qmake=.pro,.pri
+--pager=less -R

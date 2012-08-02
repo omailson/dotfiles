@@ -1,0 +1,23 @@
+[user]
+	name = Mailson Lira
+	email = mailson@gmail.com
+[merge]
+	tool = vimdiff
+[difftool]
+	prompt = 0
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+[url "git://anongit.kde.org/"]
+	insteadOf = kde:
+[url "git@git.kde.org:"]
+	pushInsteadOf = kde:
+[url "git://github.com/"]
+	insteadOf = github:
+[url "git@github.com:"]
+	pushInsteadOf = github:
+[rebase]
+	stat = true
+[core]
+	pager = less -+$LESS -RS
