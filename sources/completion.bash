@@ -80,7 +80,18 @@ _tips_comp() {
 	return 0
 }
 
+_kcmshell4_comp() {
+	local cur modules
+	COMPREPLY=()
+	cur="${COMP_WORDS[COMP_CWORD]}"
+
+	modules=$(kcmshell4 --list | tr -d ' ' | cut -d - -f 1 | tail -n +2)
+	COMPREPLY=($(compgen -W "$modules" -- ${cur}))
+	return 0;
+}
+
 complete -F _sssh_comp sssh
 complete -F _goto_comp goto
 complete -F _changemac_comp changemac
 complete -F _tips_comp tips
+complete -F _kcmshell4_comp kcmshell4
