@@ -7,4 +7,4 @@
 #	$ cppath .
 #		Copy the absolute path to the current folder
 
-readlink -f "$1" | xclip -i
+readlink -fn "$1" | xclip -i
