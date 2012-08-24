@@ -1,0 +1,15 @@
+Mapeando o H: na rede
+Instale o smbclient
+Conecte-se na VPN (se estiver em casa)
+Veja qual o IP do servidor do H (ping -c 1 ipojuca.cin.ufpe.br)
+teste se está tudo OK
+$ smbclient -L 172.17.33.200 -Ulogin
+
+Crie um mount point para o seu H:
+# mkdir /mnt/ipojuca
+
+Agora monte o compartilhamento
+# mount -t cifs //172.17.33.200/login /mnt/ipojuca -o user=LOGIN,password=SENHA,workgroup=CIN
+
+Desmontando a unidade
+# umount /mnt/ipojuca
