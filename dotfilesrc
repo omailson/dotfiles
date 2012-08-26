@@ -42,6 +42,7 @@ source "$DOTFILES_PATH/sources/aliases.bash"
 source "$DOTFILES_PATH/sources/funcoeszz.bash"
 source "$DOTFILES_PATH/sources/gotofolder.bash"
 source "$DOTFILES_PATH/sources/environment.bash"
+source "$DOTFILES_PATH/sources/git-prompt.sh"
 
 source "$DOTFILES_PATH/sources/completion.bash"
 
