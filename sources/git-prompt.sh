@@ -64,7 +64,7 @@ __gitdir ()
 		elif [ -d .git ]; then
 			echo .git
 		else
-			git rev-parse --git-dir 2>/dev/null
+			\git rev-parse --git-dir 2>/dev/null
 		fi
 	elif [ -d "$1/.git" ]; then
 		echo "$1/.git"
@@ -83,7 +83,7 @@ __git_ps1_show_upstream ()
 
 	svn_remote=()
 	# get some config options from git-config
-	local output="$(git config -z --get-regexp '^(svn-remote\..*\.url|bash\.showupstream)$' 2>/dev/null | tr '\0\n' '\n ')"
+	local output="$(\git config -z --get-regexp '^(svn-remote\..*\.url|bash\.showupstream)$' 2>/dev/null | tr '\0\n' '\n ')"
 	while read -r key value; do
 		case "$key" in
 		bash.showupstream)
@@ -116,7 +116,7 @@ __git_ps1_show_upstream ()
 	svn*)
 		# get the upstream from the "git-svn-id: ..." in a commit message
 		# (git-svn uses essentially the same procedure internally)
-		local svn_upstream=($(git log --first-parent -1 \
+		local svn_upstream=($(\git log --first-parent -1 \
 					--grep="^git-svn-id: \(${svn_url_pattern#??}\)" 2>/dev/null))
 		if [[ 0 -ne ${#svn_upstream[@]} ]]; then
 			svn_upstream=${svn_upstream[ ${#svn_upstream[@]} - 2 ]}
@@ -140,12 +140,12 @@ __git_ps1_show_upstream ()
 
 	# Find how many commits we are ahead/behind our upstream
 	if [[ -z "$legacy" ]]; then
-		count="$(git rev-list --count --left-right \
+		count="$(\git rev-list --count --left-right \
 				"$upstream"...HEAD 2>/dev/null)"
 	else
 		# produce equivalent output to --count for older versions of git
 		local commits
-		if commits="$(git rev-list --left-right "$upstream"...HEAD 2>/dev/null)"
+		if commits="$(\git rev-list --left-right "$upstream"...HEAD 2>/dev/null)"
 		then
 			local commit behind=0 ahead=0
 			for commit in $commits
@@ -224,18 +224,18 @@ __git_ps1 ()
 				r="|BISECTING"
 			fi
 
-			b="$(git symbolic-ref HEAD 2>/dev/null)" || {
+			b="$(\git symbolic-ref HEAD 2>/dev/null)" || {
 
 				b="$(
 				case "${GIT_PS1_DESCRIBE_STYLE-}" in
 				(contains)
-					git describe --contains HEAD ;;
+					\git describe --contains HEAD ;;
 				(branch)
-					git describe --contains --all HEAD ;;
+					\git describe --contains --all HEAD ;;
 				(describe)
-					git describe HEAD ;;
+					\git describe HEAD ;;
 				(* | default)
-					git describe --tags --exact-match HEAD ;;
+					\git describe --tags --exact-match HEAD ;;
 				esac 2>/dev/null)" ||
 
 				b="$(cut -c1-7 "$g/HEAD" 2>/dev/null)..." ||
@@ -251,29 +251,29 @@ __git_ps1 ()
 		local c=""
 		local p=""
 
-		if [ "true" = "$(git rev-parse --is-inside-git-dir 2>/dev/null)" ]; then
-			if [ "true" = "$(git rev-parse --is-bare-repository 2>/dev/null)" ]; then
+		if [ "true" = "$(\git rev-parse --is-inside-git-dir 2>/dev/null)" ]; then
+			if [ "true" = "$(\git rev-parse --is-bare-repository 2>/dev/null)" ]; then
 				c="BARE:"
 			else
 				b="GIT_DIR!"
 			fi
-		elif [ "true" = "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ]; then
+		elif [ "true" = "$(\git rev-parse --is-inside-work-tree 2>/dev/null)" ]; then
 			if [ -n "${GIT_PS1_SHOWDIRTYSTATE-}" ]; then
-				if [ "$(git config --bool bash.showDirtyState)" != "false" ]; then
-					git diff --no-ext-diff --quiet --exit-code || w="*"
-					if git rev-parse --quiet --verify HEAD >/dev/null; then
-						git diff-index --cached --quiet HEAD -- || i="+"
+				if [ "$(\git config --bool bash.showDirtyState)" != "false" ]; then
+					\git diff --no-ext-diff --quiet --exit-code || w="*"
+					if \git rev-parse --quiet --verify HEAD >/dev/null; then
+						\git diff-index --cached --quiet HEAD -- || i="+"
 					else
 						i="#"
 					fi
 				fi
 			fi
 			if [ -n "${GIT_PS1_SHOWSTASHSTATE-}" ]; then
-				git rev-parse --verify refs/stash >/dev/null 2>&1 && s="$"
+				\git rev-parse --verify refs/stash >/dev/null 2>&1 && s="$"
 			fi
 
 			if [ -n "${GIT_PS1_SHOWUNTRACKEDFILES-}" ]; then
-				if [ -n "$(git ls-files --others --exclude-standard)" ]; then
+				if [ -n "$(\git ls-files --others --exclude-standard)" ]; then
 					u="%"
 				fi
 			fi
