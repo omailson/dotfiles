@@ -14,3 +14,4 @@
 	stat = true
 [core]
 	pager = less -FRSX
+	editor = vim
