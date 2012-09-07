@@ -7,6 +7,7 @@ export PATH="$DOTFILES_PATH"/bin:$PATH
 shopt -s histappend
 PROMPT_COMMAND='history -a'
 
+# PS1 {{{1
 # Changes text color and then reset color changes
 function __CK() {
 	printf "\033[$1m$2\033[m"
@@ -46,6 +47,7 @@ PS1_GIT='$(__CK "1;37" "$(__git_ps1 " (%s)" 2> /dev/null)")'
 PS1_ENV='$(__CK "1;37" "$(__environment_name " [%s]")")'
 PS1_INPUT='\[\e[1;32m\]\$\[\e[m\]' # Ctrl+A won't work on long lines if using __CK
 PS1="$PS1_SEPARATOR\n$PS1_USERINFO $PS1_FOLDERINFO$PS1_GIT$PS1_ENV\n$PS1_INPUT "
+# }}}1
 
 source "$DOTFILES_PATH/sources/aliases.bash"
 source "$DOTFILES_PATH/sources/funcoeszz.bash"
@@ -60,4 +62,4 @@ then
 	source "$DOTFILES_PATH/local.bashrc"
 fi
 
-# vim:ft=sh
+# vim:ft=sh foldmethod=marker
