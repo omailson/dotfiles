@@ -7,4 +7,7 @@ export JOBS=90
 # NAME aa:bb:cc:dd
 export MAC_FILE="/path/to/macs"
 
+# Phabricator
+export PHABRICATOR_PATH=/path/to/phabricator
+
 # vim:ft=sh
