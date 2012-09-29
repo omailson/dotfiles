@@ -1,4 +1,0 @@
-#!/bin/bash
-tempo=`zenity --entry --text="Tempo em segundos" --title="Contagem regressiva"`
-sleep $tempo
-zenity --info --text="A contagem regressiva acabou"

@@ -1,4 +1,0 @@
-#!/bin/bash
-# DESCRIPTION
-
-/home/mailson/dev/php/clubecell/cake/console/cake -app /home/mailson/dev/php/clubecell/app pagamento

@@ -1,5 +1,0 @@
-#!/bin/bash
-# Adiciona uma rota no gateway para que quando conectado à VPN do CIn, consiga enxergar os computadores
-INTERFACE="ppp0"
-IP=`ifconfig | sed -n "/$INTERFACE/,+1p" | grep -o '\([0-9]\{1,3\}\.\)\{3\}\([0-9]\{1,3\}\)' | head -n 1`
-route add default gw $IP dev $INTERFACE
