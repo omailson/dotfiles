@@ -56,3 +56,6 @@ Full path to a file:
 Format to FAT32
 	sudo mkfs.vfat -F 32 -I /dev/sdb
                           +----- create partition
+
+Ask for a password
+    echo -n "Password: "; stty -echo; read password; stty echo; echo
