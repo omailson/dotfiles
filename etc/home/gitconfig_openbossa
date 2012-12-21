@@ -19,3 +19,5 @@
 [core]
 	pager = less -+$LESS -RS
 	editor = vim
+[alias]
+	update = remote update --prune

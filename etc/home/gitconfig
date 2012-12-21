@@ -21,3 +21,5 @@
 	stat = true
 [core]
 	pager = less -+$LESS -RS
+[alias]
+	update = remote update --prune
