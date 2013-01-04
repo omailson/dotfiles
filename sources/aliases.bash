@@ -7,6 +7,7 @@ alias python='python2'
 alias xx='chmod +x'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo utilities-terminal || echo dialog-error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias cnf='pkgfile -v -b --'
+alias webserver='python2 -m SimpleHTTPServer'
 
 # ls aliases
 alias ls='ls --color=auto'
