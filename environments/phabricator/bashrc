@@ -6,3 +6,7 @@ export PHABRICATOR_ENV=custom/myconfig
 export PATH=$PHABRICATOR_PATH/phabricator/bin:$PATH
 export PATH=$PHABRICATOR_PATH/arcanist/bin:$PATH
 export PATH=$PHABRICATOR_PATH/libphabricator-indt/bin:$PATH
+
+function tenaz() {
+	cat "$1" | arc paste --title "$1"
+}
