@@ -1,0 +1,22 @@
+#!/bin/sh
+if [ "$#" -eq 0 ]
+then
+	chromium --app=http://rdio.com/
+else
+	case "$1" in
+		play|pause)
+			action="space"
+			;;
+		next)
+			action="Right"
+			;;
+		previous)
+			action="Left"
+			;;
+		*)
+			action="space"
+			;;
+	esac
+
+	xdotool key --window $(xdotool search --name 'Oi Rdio') "$action"
+fi
