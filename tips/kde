@@ -1,0 +1,4 @@
+Shut down:
+    qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout 0 2 2
+    http://majewsky.wordpress.com/2009/07/11/shutdown-your-machine-automatically-or-from-remote/
+    http://api.kde.org/4.x-api/kde-workspace-apidocs/libs/kworkspace/html/namespaceKWorkSpace.html
