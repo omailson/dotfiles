@@ -2,6 +2,7 @@
 SOURCE="${BASH_SOURCE[0]}" # Path of this sourced file
 export DOTFILES_PATH=`dirname $SOURCE`
 export PATH="$DOTFILES_PATH"/bin:$PATH
+export PATH="$DOTFILES_PATH"/modules/pacbuild:$PATH
 
 # Save bash history on the go
 shopt -s histappend

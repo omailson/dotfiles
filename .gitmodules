@@ -1,0 +1,3 @@
+[submodule "modules/pacbuild"]
+	path = modules/pacbuild
+	url = git://github.com/omailson/pacbuild.git
