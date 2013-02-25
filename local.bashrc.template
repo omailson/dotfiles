@@ -9,5 +9,6 @@ export MAC_FILE="/path/to/macs"
 
 # Phabricator
 export PHABRICATOR_PATH=/path/to/phabricator
+export PHABRICATOR_BOT=$PHABRICATOR_PATH/phabricator/irc.json
 
 # vim:ft=sh
