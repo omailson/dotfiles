@@ -18,5 +18,5 @@ else
 			;;
 	esac
 
-	xdotool key --window $(xdotool search --name 'Rdio') "$action"
+	xdotool key --window $(xdotool search --name '– Rdio') "$action"
 fi
