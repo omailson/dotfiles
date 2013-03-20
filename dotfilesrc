@@ -8,6 +8,10 @@ export PATH="$DOTFILES_PATH"/modules/pacbuild:$PATH
 shopt -s histappend
 PROMPT_COMMAND='history -a'
 
+# Increase history size
+HISTFILESIZE=1000000000
+HISTSIZE=1000000
+
 # PS1 {{{1
 # Changes text color and then reset color changes
 function __CK() {
