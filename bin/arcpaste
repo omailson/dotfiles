@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ "$#" -ne 1 ]
+then
+	echo Invalid number of arguments
+	exit 1
+fi
+
+if [ -f "$1" ]
+then
+	echo Sending "$1"
+	cat "$1" | arc paste --title "$1"
+else
+	echo File not found!
+	exit 1
+fi
