@@ -1,0 +1,66 @@
+#!/usr/bin/env python2
+
+import sys
+import re
+from datetime import date
+
+ages = []
+years = []
+
+def parseargs(args):
+    agepattern = re.compile(r'(?P<year>\d{4}([+-]\d+)?)=(?P<age>\d+)(?P<ages>\?(\d+,)*\d+)?')
+    yearpattern = re.compile(r'\d{4}([+-]\d+)?')
+
+    for arg in args:
+        agematch = agepattern.match(arg)
+        yearmatch = yearpattern.match(arg)
+
+        if agematch:
+            year = eval(agematch.group('year'))
+            age = int(agematch.group('age'))
+            ages.append((year, age))
+
+            # Append years
+            years.append(year)
+            if agematch.group('ages'):
+                agesqueried = agematch.group('ages').lstrip('?').split(',')
+                for a in agesqueried:
+                    years.append(year - age + int(a))
+        elif yearmatch:
+            years.append(int(arg))
+        else:
+            pass # Throw exeception
+
+def addbirthyears():
+    for age in ages:
+        years.append(age[0] - age[1])
+
+def sanitizedata():
+    global years
+
+    # Add current year
+    today = date.today()
+    years.append(today.year)
+
+    # Sort years and remove duplicates
+    years = list(set(years))
+    years.sort()
+
+def printvalues():
+    for age in ages:
+        for year in years:
+            birth = age[0] - age[1]
+            if year < birth:
+                continue
+
+            if age[0] == year:
+                print "**%d=%d**" % (year, year - birth),
+            else:
+                print "%d=%d" % (year, year - birth),
+        print
+
+parseargs(sys.argv)
+addbirthyears()
+sanitizedata()
+
+printvalues()
