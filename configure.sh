@@ -21,4 +21,10 @@ then
 	CONF_STATUS=1
 fi
 
+if [ ! -L environments/python2/bin/python ]
+then
+	echo "Configuring python2 environment"
+	ln -s `which python2` environments/python2/bin/python
+fi
+
 exit "$CONF_STATUS"
