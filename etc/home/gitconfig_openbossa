@@ -1,3 +1,15 @@
+[user]
+	name = Mailson Menezes
+	email = mailson.menezes@openbossa.org
+[merge]
+	tool = vimdiff
+[difftool]
+	prompt = 0
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+	ui = auto
 [url "git://anongit.kde.org/"]
 	insteadOf = kde:
 [url "git@git.kde.org:"]
@@ -6,14 +18,6 @@
 	insteadOf = github:
 [url "git@github.com:"]
 	pushInsteadOf = github:
-[color]
-	branch = auto
-	diff = auto
-	status = auto
-	ui = auto
-[user]
-	name = Mailson Menezes
-	email = mailson.menezes@openbossa.org
 [rebase]
 	stat = true
 [core]
@@ -21,3 +25,4 @@
 	editor = vim
 [alias]
 	update = remote update --prune
+	backup = !gitbackup.sh

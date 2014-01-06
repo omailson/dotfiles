@@ -9,6 +9,7 @@
 	branch = auto
 	diff = auto
 	status = auto
+	ui = auto
 [url "git://anongit.kde.org/"]
 	insteadOf = kde:
 [url "git@git.kde.org:"]
@@ -21,6 +22,7 @@
 	stat = true
 [core]
 	pager = less -+$LESS -RS
+	editor = vim
 [alias]
 	update = remote update --prune
 	backup = !gitbackup.sh
