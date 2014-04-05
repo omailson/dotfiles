@@ -1,5 +1,31 @@
 #!/usr/bin/env python2
 
+####
+# Usage:
+#
+# Query the age of a person who was born in 1987
+# $ age 1987=0
+#
+# At what year this person was 15 years old?
+# $ age 1987=0?15
+#
+# What what year this person will be 40 and 50 years old
+# $ age 1987=0?40,50
+#
+# The person was 15 two years ago
+# $ age 2014-2=15
+#
+# What was his/her age in 2001
+# $ age 2014-2=15 2001
+#
+# How old it will be in 7 years
+# $ age 2014-2=15 2014+7
+#
+# You can set more than one person
+# $ age 2014-2=15 1987=0 2014+7
+#
+####
+
 import sys
 import re
 from datetime import date
