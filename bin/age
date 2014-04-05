@@ -27,7 +27,7 @@ def parseargs(args):
                 for a in agesqueried:
                     years.append(year - age + int(a))
         elif yearmatch:
-            years.append(int(arg))
+            years.append(eval(arg))
         else:
             pass # Throw exeception
 
