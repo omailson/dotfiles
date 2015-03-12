@@ -7,6 +7,13 @@ then
 	gitbackup_remote="$1"
 fi
 
+if [ ! $(git remote | grep "$gitbackup_remote") ]
+then
+	echo "Couldn't find remote named $gitbackup_remote. Please use one of the following"
+	git remote
+	exit 1
+fi
+
 gitbackup_untracked_files=$(git ls-files --others --directory --exclude-standard)
 if [ -n "$gitbackup_untracked_files" ]
 then
