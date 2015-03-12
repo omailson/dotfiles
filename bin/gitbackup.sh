@@ -1,7 +1,7 @@
 #!/bin/bash
 # Script to perform a remote backup of the current git workspace
 
-gitbackup_untracked_files=$(git ls-files --others --directory)
+gitbackup_untracked_files=$(git ls-files --others --directory --exclude-standard)
 for f in $gitbackup_untracked_files
 do
 	read -p "Add untracked file? $f [Y/n] "
