@@ -1,10 +1,25 @@
 #!/bin/bash
 # Script to perform a remote backup of the current git workspace
 
+usage() {
+cat << EOF
+Perform remote backup of the current git workspace. If there are any untracked
+file, it will be asked which ones the user wish to backup.
+
+Usage: git backup [remote | --help]
+EOF
+}
+
 gitbackup_remote="origin"
 if [ "$#" -gt 0 ]
 then
-	gitbackup_remote="$1"
+	if [ "$1" = "--help" ]
+	then
+		usage
+		exit
+	else
+		gitbackup_remote="$1"
+	fi
 fi
 
 if [ ! $(git remote | grep "$gitbackup_remote") ]
