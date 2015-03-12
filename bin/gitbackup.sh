@@ -2,16 +2,39 @@
 # Script to perform a remote backup of the current git workspace
 
 gitbackup_untracked_files=$(git ls-files --others --directory --exclude-standard)
-for f in $gitbackup_untracked_files
-do
-	read -p "Add untracked file? $f [Y/n] "
-	if [ "$REPLY" = "y" -o -z "$REPLY" ]
+if [ -n "$gitbackup_untracked_files" ]
+then
+	tmpfile=$(mktemp)
+
+	# Insert information and untracked files to temp file
+cat << EOF >> "$tmpfile"
+# Showing untracked files to backup
+# If there are any files you don't wish to save, you can simply remove the respective line
+# Tracked files are not listed because they are supposed to be backed up
+EOF
+	echo "$gitbackup_untracked_files" >> "$tmpfile"
+
+	# Open temp file with a text editor
+	if [ -z "$EDITOR" ]
 	then
-		git add $f
+		EDITOR=vim
 	fi
-done
+	eval "$EDITOR" $tmpfile
+
+	# Get selected files and stage them to commit
+	gitbackup_untracked_files=$(cat "$tmpfile" | grep -v '^#')
+	for f in $gitbackup_untracked_files
+	do
+		git add "$f"
+	done
+
+	# Remove temp file
+	rm $tmpfile
+fi
+
 unset gitbackup_untracked_files
 
+# Commit & push selected files
 git commit -a -m WIP
 git push -f origin HEAD:backup-"$USER"
 git reset HEAD~1
