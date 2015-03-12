@@ -1,6 +1,12 @@
 #!/bin/bash
 # Script to perform a remote backup of the current git workspace
 
+gitbackup_remote="origin"
+if [ "$#" -gt 0 ]
+then
+	gitbackup_remote="$1"
+fi
+
 gitbackup_untracked_files=$(git ls-files --others --directory --exclude-standard)
 if [ -n "$gitbackup_untracked_files" ]
 then
@@ -36,5 +42,5 @@ unset gitbackup_untracked_files
 
 # Commit & push selected files
 git commit -a -m WIP
-git push -f origin HEAD:backup-"$USER"
+git push -f "$gitbackup_remote" HEAD:backup-"$USER"
 git reset HEAD~1
