@@ -1,3 +1,6 @@
 [submodule "modules/pacbuild"]
 	path = modules/pacbuild
 	url = git://github.com/omailson/pacbuild.git
+[submodule "modules/git-backup"]
+	path = modules/git-backup
+	url = https://github.com/omailson/git-backup.git
