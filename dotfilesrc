@@ -2,7 +2,6 @@
 SOURCE="${BASH_SOURCE[0]}" # Path of this sourced file
 export DOTFILES_PATH=`dirname $SOURCE`
 export PATH="$DOTFILES_PATH"/bin:$PATH
-export PATH="$DOTFILES_PATH"/modules/pacbuild:$PATH
 export EDITOR="vim"
 
 # Save bash history on the go
@@ -60,6 +59,7 @@ source "$DOTFILES_PATH/sources/funcoeszz.bash"
 source "$DOTFILES_PATH/sources/gotofolder.bash"
 source "$DOTFILES_PATH/sources/environment.bash"
 source "$DOTFILES_PATH/sources/git-prompt.sh"
+source "$DOTFILES_PATH/sources/modules.bash"
 
 source "$DOTFILES_PATH/sources/completion.bash"
 
