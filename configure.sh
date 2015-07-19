@@ -30,4 +30,7 @@ then
 	ln -s `which python2` environments/python2/bin/python
 fi
 
+echo "Updating submodules..."
+git submodule update --init
+
 exit "$CONF_STATUS"
