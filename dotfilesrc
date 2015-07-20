@@ -1,3 +1,9 @@
+# Silently quit if trying to source dotfiles twice
+if [ -n "$DOTFILES_PATH" ]
+then
+	return
+fi
+
 # Add dotfiles/bin to path
 SOURCE="${BASH_SOURCE[0]}" # Path of this sourced file
 export DOTFILES_PATH=`dirname $SOURCE`
