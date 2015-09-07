@@ -1,0 +1,3 @@
+If changing regional settings (eg: change Time/Date locale to pt_BR) you should
+remember to uncomment the regional setting line in /etc/locale.gen and run
+locale-gen again
