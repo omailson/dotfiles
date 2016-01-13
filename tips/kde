@@ -2,3 +2,29 @@ Shut down:
     qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout 0 2 2
     http://majewsky.wordpress.com/2009/07/11/shutdown-your-machine-automatically-or-from-remote/
     http://api.kde.org/4.x-api/kde-workspace-apidocs/libs/kworkspace/html/namespaceKWorkSpace.html
+
+http://api.kde.org/4.x-api/kde-workspace-apidocs/plasma-workspace/html/shutdown_8cpp_source.html
+http://api.kde.org/4.x-api/kde-workspace-apidocs/plasma-workspace/html/kworkspace_8h_source.html#l00031
+enum ShutdownConfirm {
+  ShutdownConfirmDefault = -1,
+  ShutdownConfirmNo = 0,
+  ShutdownConfirmYes = 1
+};
+
+enum ShutdownType {
+  ShutdownTypeDefault = -1,
+  ShutdownTypeNone = 0,
+  ShutdownTypeReboot = 1,
+  ShutdownTypeHalt = 2,
+  // KDE5: kill this
+  ShutdownTypeLogout = 3
+};
+
+// KDE5: this seems fairly useless
+enum ShutdownMode {
+  ShutdownModeDefault = -1,
+  ShutdownModeSchedule = 0,
+  ShutdownModeTryNow = 1,
+  ShutdownModeForceNow = 2,
+  ShutdownModeInteractive = 3
+};
