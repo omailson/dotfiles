@@ -9,7 +9,12 @@ alias cnf='pkgfile -v -b --'
 alias webserver='python2 -m SimpleHTTPServer'
 
 # ls aliases
-alias ls='ls --color=auto'
+if [ "$(uname)" == "Darwin" ]
+then
+	alias ls='ls -G'
+else
+	alias ls='ls --color=auto'
+fi
 alias l='ls'
 alias la='ls -la'
 alias ll='ls -l'
