@@ -1,0 +1,13 @@
+nginx configuration on a Mac
+
+Config file:
+$ vim /usr/local/etc/nginx/nginx.conf
+
+Server config file:
+$ vim /usr/local/etc/nginx/servers/cugapp.conf
+
+Start:
+$ nginx
+
+Stop:
+$ nginx -s stop
