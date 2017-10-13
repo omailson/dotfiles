@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# TODO (y/n/p/q/?)
+
+ask_add() {
+    # Based on http://djm.me/ask
+    while true; do
+
+		prompt="Y/n/p"
+		default=Y
+
+        # Ask the question - use /dev/tty in case stdin is redirected from somewhere else
+        read -p "$1 [$prompt] " REPLY </dev/tty
+
+        # Default?
+        if [ -z "$REPLY" ]; then
+            REPLY=$default
+        fi
+
+        # Check if the reply is valid
+        case "$REPLY" in
+            Y*|y*) return 0 ;;
+            N*|n*) return 1 ;;
+			P*|p*) return 2 ;;
+        esac
+
+    done
+}
+
+while [ "$#" -gt 0 ]
+do
+	echo ">>> $1"
+	git diff "$1"
+
+	ask_add "Would you like to add (y/n) or --patch (p)?"
+	REPLY=$?
+
+	if [ "$REPLY" -eq 0 ]
+	then
+		git add "$1"
+	elif [ "$REPLY" -eq 2 ]
+	then
+		git add -p "$1"
+	fi
+
+	shift
+	echo
+done

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if ! command -v fpp >/dev/null 2>&1 # https://stackoverflow.com/a/677212
+then
+	echo "You should install fpp first: http://facebook.github.io/PathPicker/"
+	exit 1
+fi
+
+git status --untracked-files=all | fpp -c git-add
+git status
