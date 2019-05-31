@@ -1,5 +1,5 @@
 alias vi='vim --cmd "let g:dotvim_vi = 1"'
-alias go='xdg-open'
+alias ggo='xdg-open'
 alias agora='date +"%d/%m %H:%M"'
 alias genius='genius --nomixed' # Inicia o genius de forma que não mostre frações de forma mista
 alias cakepath='export PATH=$PATH:`pwd`/cake/console'
