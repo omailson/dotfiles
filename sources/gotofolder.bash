@@ -12,6 +12,15 @@
 # Example:
 # echo "alias:path/to/local/folder" >> .goto
 
+realpath() {
+	if readlink -f 2>/dev/null
+	then
+		readlink -f "$1"
+	else
+		./realpath.py "$1"
+	fi
+}
+
 goto() {
 	local folders foldername folderpath gotopath folder
 	folders=$(echo $GOTOFOLDERS | tr "," '\n')
@@ -21,12 +30,12 @@ goto() {
 	do
 		if [ -e "$gotopath"/.goto ]
 		then
-			folders="$folders"$'\n'$(paste -d : <(cat "$gotopath"/.goto | cut -d : -f 1) <(cat "$gotopath"/.goto | cut -d : -f 2 | xargs -I {} readlink -f "$gotopath"/{}))
+			folders="$folders"$'\n'$(paste -d : <(cat "$gotopath"/.goto | cut -d : -f 1) <(cat "$gotopath"/.goto | cut -d : -f 2 | xargs -I {} realpath "$gotopath"/{}))
 		fi
 
 		test "$gotopath" = $HOME -o "$gotopath" = "/" && break
 
-		gotopath=$(readlink -f "$gotopath"/..)
+		gotopath=$(realpath "$gotopath"/..)
 	done
 
 	for folder in $folders
@@ -36,7 +45,7 @@ goto() {
 
 		if [ "$1" == "$foldername" ]
 		then
-			cd "$folderpath"
+			cd $(realpath "$folderpath")
 			pwd
 			break
 		fi

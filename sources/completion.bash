@@ -36,6 +36,15 @@ _sssh_comp() {
 	return 0
 }
 
+_realpath() {
+	if readlink -f 2>/dev/null
+	then
+		readlink -f "$1"
+	else
+		./realpath.py "$1"
+	fi
+}
+
 _goto_comp() {
 	local folders gotopath cur
 	COMPREPLY=()
@@ -53,7 +62,7 @@ _goto_comp() {
 
 		test "$gotopath" = $HOME -o "$gotopath" = "/" && break
 
-		gotopath=$(readlink -f "$gotopath"/..)
+		gotopath=$(realpath "$gotopath"/..)
 	done
 
 	COMPREPLY=($(compgen -W "${folders}" -- ${cur}))
