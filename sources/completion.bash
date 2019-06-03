@@ -41,7 +41,7 @@ _realpath() {
 	then
 		readlink -f "$1"
 	else
-		./realpath.py "$1"
+		realpath.py "$1"
 	fi
 }
 
