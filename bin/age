@@ -38,6 +38,9 @@ def parseargs(args):
     yearpattern = re.compile(r'\d{4}([+-]\d+)?')
 
     for arg in args:
+        if arg == '--help':
+            printhelp()
+
         agematch = agepattern.match(arg)
         yearmatch = yearpattern.match(arg)
 
@@ -84,6 +87,23 @@ def printvalues():
             else:
                 print "%d=%d" % (year, year - birth),
         print
+
+def printhelp():
+    with open(__file__, "r") as f:
+        data = f.readlines()
+
+    usage = False
+    for d in data:
+        if d.startswith('####'):
+            if not usage: # Will start printing usage information
+                usage = True
+            else: # Stop printing usage information
+                break
+
+        if usage:
+            print d.replace('#', ''),
+
+    sys.exit(0)
 
 parseargs(sys.argv)
 addbirthyears()
