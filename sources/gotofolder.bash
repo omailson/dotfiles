@@ -12,6 +12,8 @@
 # Example:
 # echo "alias:path/to/local/folder" >> .goto
 
+# FIXME error when we use absolute path in a .goto file
+
 realpath() {
 	if readlink -f 2>/dev/null
 	then
@@ -30,7 +32,7 @@ goto() {
 	do
 		if [ -e "$gotopath"/.goto ]
 		then
-			folders="$folders"$'\n'$(paste -d : <(cat "$gotopath"/.goto | cut -d : -f 1) <(cat "$gotopath"/.goto | cut -d : -f 2 | xargs -I {} realpath "$gotopath"/{}))
+			folders="$folders"$'\n'$(paste -d : <(cat "$gotopath"/.goto | cut -d : -f 1) <(cat "$gotopath"/.goto | cut -d : -f 2 | xargs -I {} bash -c 'realpath "$@"' _ "$gotopath"/{}))
 		fi
 
 		test "$gotopath" = $HOME -o "$gotopath" = "/" && break
@@ -53,3 +55,4 @@ goto() {
 }
 
 export -f goto
+export -f realpath # In order to `realpath` be visible to xargs
