@@ -62,7 +62,6 @@ PS1="$PS1_SEPARATOR\n$PS1_USERINFO $PS1_FOLDERINFO$PS1_GIT$PS1_ENV\n$PS1_INPUT "
 
 source "$DOTFILES_PATH/sources/aliases.bash"
 source "$DOTFILES_PATH/sources/funcoeszz.bash"
-source "$DOTFILES_PATH/sources/gotofolder.bash"
 source "$DOTFILES_PATH/sources/environment.bash"
 source "$DOTFILES_PATH/sources/git-prompt.sh"
 source "$DOTFILES_PATH/sources/modules.bash"

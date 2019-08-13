@@ -3,3 +3,7 @@ export PATH="$DOTFILES_PATH"/modules/pacbuild:$PATH
 
 # git-backup module
 export PATH="$DOTFILES_PATH"/modules/git-backup/bin:$PATH
+
+# goto-folder module
+source "$DOTFILES_PATH"/modules/goto-folder/goto.bash
+source "$DOTFILES_PATH"/modules/goto-folder/goto-completion.bash

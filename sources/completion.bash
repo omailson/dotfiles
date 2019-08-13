@@ -45,30 +45,6 @@ _realpath() {
 	fi
 }
 
-_goto_comp() {
-	local folders gotopath cur
-	COMPREPLY=()
-	cur="${COMP_WORDS[COMP_CWORD]}"
-
-	folders=$(echo $GOTOFOLDERS | tr "," '\n' | cut -d : -f 1)
-
-	gotopath="$PWD"
-	while [ 1 ]
-	do
-		if [ -e "$gotopath"/.goto ]
-		then
-			folders="$folders"$'\n'$(cat "$gotopath"/.goto | cut -d : -f 1)
-		fi
-
-		test "$gotopath" = $HOME -o "$gotopath" = "/" && break
-
-		gotopath=$(realpath "$gotopath"/..)
-	done
-
-	COMPREPLY=($(compgen -W "${folders}" -- ${cur}))
-	return 0
-}
-
 _changemac_comp() {
 	local cur macs
 	COMPREPLY=()
@@ -100,7 +76,6 @@ _kcmshell4_comp() {
 }
 
 complete -F _sssh_comp sssh
-complete -F _goto_comp goto
 complete -F _changemac_comp changemac
 complete -F _tips_comp tips
 complete -F _kcmshell4_comp kcmshell4

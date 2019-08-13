@@ -4,3 +4,6 @@
 [submodule "modules/git-backup"]
 	path = modules/git-backup
 	url = https://github.com/omailson/git-backup.git
+[submodule "modules/goto-folder"]
+	path = modules/goto-folder
+	url = https://github.com/omailson/goto-folder.git
