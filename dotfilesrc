@@ -44,6 +44,13 @@ function __status_color() {
 	fi
 }
 
+function __dotfiles_jobs() {
+	if [ "$1" -gt 0 ]
+	then
+		printf -- "+$1"
+	fi
+}
+
 if [ -z "$DISPLAY" ]
 then
 	PS1_SEP="-"
@@ -57,8 +64,9 @@ PS1_FOLDERINFO='$(__CK "1;34" "\w")'
 PS1_GIT='$(__CK "1;37" "$(__git_ps1 " (%s)" 2> /dev/null)")'
 PS1_ENV='$(__CK "1;37" "$(__environment_name " [%s]")")'
 PS1_VENV='$(__CK "1;32" "$(__venv_name " {%s}")")'
+PS1_JOBS='$(__CK 31 $(__dotfiles_jobs "\j"))'
 PS1_INPUT='\[\e[1;32m\]\$\[\e[m\]' # Ctrl+A won't work on long lines if using __CK
-PS1="$PS1_SEPARATOR\n$PS1_USERINFO $PS1_FOLDERINFO$PS1_GIT$PS1_ENV$PS1_VENV\n$PS1_INPUT "
+PS1="$PS1_SEPARATOR\n$PS1_USERINFO $PS1_FOLDERINFO$PS1_GIT$PS1_ENV$PS1_VENV\n$PS1_INPUT$PS1_JOBS "
 # }}}1
 
 source "$DOTFILES_PATH/sources/aliases.bash"
