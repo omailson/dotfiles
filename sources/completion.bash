@@ -79,3 +79,4 @@ complete -F _sssh_comp sssh
 complete -F _changemac_comp changemac
 complete -F _tips_comp tips
 complete -F _kcmshell4_comp kcmshell4
+complete -c witch
