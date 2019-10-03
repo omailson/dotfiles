@@ -1,5 +1,7 @@
---type-set
-qml=.qml
---type-set
-qmake=.pro,.pri
+--type-add
+qml:ext:qml
+
+--type-add
+qmake:ext:pro,pri
+
 --pager=less -R
