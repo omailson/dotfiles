@@ -4,4 +4,7 @@ qml:ext:qml
 --type-add
 qmake:ext:pro,pri
 
+--type-add
+gotest:match:/_test\.go/
+
 --pager=less -R
