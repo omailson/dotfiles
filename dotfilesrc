@@ -76,6 +76,7 @@ source "$DOTFILES_PATH/sources/venv.bash"
 source "$DOTFILES_PATH/sources/git-prompt.sh"
 source "$DOTFILES_PATH/sources/ask.sh"
 source "$DOTFILES_PATH/sources/witch.bash"
+source "$DOTFILES_PATH/sources/git-root.bash"
 source "$DOTFILES_PATH/sources/modules.bash"
 
 source "$DOTFILES_PATH/sources/completion.bash"
