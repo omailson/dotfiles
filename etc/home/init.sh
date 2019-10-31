@@ -28,6 +28,12 @@ case "$1" in
 	ackrc)
 		configure "$1" ."$1"
 		;;
+	gitignore_global)
+		configure "$1" ."$1"
+		echo "Finish configuration by adding to your gitconfig"
+		echo "git config --global core.excludesfile ~/.gitignore_global"
+		# TODO check whether git config --global core.excludesfile returns false before continuing (it should return false)
+		;;
 	*)
 		echo "Unknown option"
 		exit 1
