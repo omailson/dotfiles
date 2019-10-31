@@ -46,8 +46,7 @@ case "$1" in
 	-a|--auto)
 		# Auto-detect folder name removing special charaters not allowed in goto-folder
 		BOOKMARK_NAME=$(basename "$PWD" | tr -cd '[:alnum:]_-')
-		shift
-		if [ "$#" -gt 1 ]
+		if [ "$#" -gt 2 ]
 		then
 			show_help
 			show_error "Too many arguments. You don't have to pass a bookmark name when using -a"
