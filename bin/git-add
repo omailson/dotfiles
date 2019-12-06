@@ -1,12 +1,19 @@
 #!/bin/bash
 
-# TODO (y/n/p/q/?)
+# TODO Ctrl-C quit undoing all changes (or add an option `q` to do that). We need to think how to undo the --patch
+
+GA_YES=0
+GA_NO=1
+GA_PATCH=2
+GA_RELOAD=3
+GA_HELP=100
+GA_QUIT=127
 
 ask_add() {
     # Based on http://djm.me/ask
     while true; do
 
-		prompt="Y/n/p"
+		prompt="Y/n/p/r/q/?"
 		default=Y
 
         # Ask the question - use /dev/tty in case stdin is redirected from somewhere else
@@ -19,30 +26,96 @@ ask_add() {
 
         # Check if the reply is valid
         case "$REPLY" in
-            Y*|y*) return 0 ;;
-            N*|n*) return 1 ;;
-			P*|p*) return 2 ;;
+			Y*|y*) return $GA_YES    ;;
+			N*|n*) return $GA_NO     ;;
+			P*|p*) return $GA_PATCH  ;;
+			R*|r*) return $GA_RELOAD ;;
+			\?)    return $GA_HELP   ;;
+			Q*|q*) return $GA_QUIT   ;;
         esac
 
     done
 }
 
+file_is_git_tracked() {
+	git ls-files --error-unmatch -- "$1" >/dev/null 2>&1
+	return "$?"
+}
+
+print_usage() {
+	echo -en "\033[31;1m"
+cat << EOF
+y - add this file
+n - do no add this file
+p - add parts of the file (git add --patch)
+r - reload diff with most recent file changes
+? - print help
+EOF
+	echo -en "\033[m"
+}
+
+# If set to 1 will ask again for the same file
+ASK_AGAIN=0
+# If set to 1 will print usage information
+WILL_PRINT_USAGE=0
+
 while [ "$#" -gt 0 ]
 do
-	echo ">>> $1"
-	git diff "$1"
-
-	ask_add "Would you like to add (y/n) or --patch (p)?"
-	REPLY=$?
-
-	if [ "$REPLY" -eq 0 ]
+	# Show diff and ask for an option
+	echo -e "\033[32;1m>>> $1\033[m"
+	if file_is_git_tracked "$1"
 	then
-		git add "$1"
-	elif [ "$REPLY" -eq 2 ]
-	then
-		git add -p "$1"
+		git diff "$1"
+	else
+		# We need this command to display the "diff" of untracked files
+		git diff --no-index -- /dev/null "$1"
 	fi
 
-	shift
+	if [ "$WILL_PRINT_USAGE" -eq 1 ]
+	then
+		echo # Space diff and usage with a newline
+		print_usage
+		WILL_PRINT_USAGE=0
+	fi
+	ask_add "Add this file?"
+	REPLY=$?
+
+	# Evaluate option
+	case "$REPLY" in
+		$GA_YES)
+			git add "$1"
+			;;
+		$GA_NO)
+			# do nothing
+			;;
+		$GA_PATCH)
+			git add -p "$1"
+			;;
+		$GA_RELOAD)
+			ASK_AGAIN=1
+			;;
+		$GA_HELP)
+			WILL_PRINT_USAGE=1
+			ASK_AGAIN=1
+			;;
+		# $GA_QUIT)
+		# 	exit
+		# 	;;
+		*)
+			echo "Invalid option"
+			ASK_AGAIN=1
+			;;
+	esac
+
+	# Advance to the next file (unless ASK_AGAIN != 0)
+	if [ "$ASK_AGAIN" -eq 0 ]
+	then
+		shift
+	else
+		ASK_AGAIN=0
+		# Will repeat loop
+	fi
+
+	# Add new line between runs
 	echo
 done
