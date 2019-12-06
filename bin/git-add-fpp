@@ -6,5 +6,7 @@ then
 	exit 1
 fi
 
-git status --untracked-files=all | fpp -c git-add
+git status --untracked-files=all \
+	| sed -n '/Changes not staged for commit/,$p' \
+	| fpp -c git-add
 git status
