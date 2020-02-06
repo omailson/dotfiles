@@ -1,10 +1,12 @@
 #!/bin/bash
+# Display repository's root directory
+# Used in conjunction with gitroot function, which moves you to the repository's root
 
 set -e
 
-if [ "$1" != "--submodule" ] # --submodule bypasses the submodule check, so we can go to submodule's root instead
+if [ "$1" != "--submodule" ] # --submodule bypasses the submodule check, so we can display submodule's root instead
 then
-	# First, check whether we are in a submodule and go to superproject's root if so
+	# Check whether we are in a submodule, and display superproject's root if so
 	SUPERPROJECT_WORKING_TREE=$(git rev-parse --show-superproject-working-tree)
 	if [ -n "$SUPERPROJECT_WORKING_TREE" ]
 	then
