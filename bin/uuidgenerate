@@ -1,0 +1,21 @@
+#!/bin/bash
+# Utility tool to generate (and copy) a uuidv4
+
+if ! command -v uuidgen >/dev/null 2>&1
+then
+	echo "uuidgen is not installed on your machine"
+	echo "hint: it comes by default on MacOS"
+	exit 1
+fi
+
+set -e
+set -o pipefail
+
+generated_uuid=$(uuidgen | tr '[:upper:]' '[:lower:]' | tr -d $'\n')
+echo "$generated_uuid"
+
+if [ -t 1 ] # Copy to the clipboard only if output is not being piped
+then
+	echo -n "$generated_uuid" | pbcopy
+	echo "Copied to clipboard!" >&2
+fi
