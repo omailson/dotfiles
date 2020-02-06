@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 CONF_STATUS=0
 INSTALL_COMMAND="source $PWD/dotfilesrc"
 
