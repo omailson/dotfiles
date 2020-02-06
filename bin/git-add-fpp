@@ -7,6 +7,6 @@ then
 fi
 
 git status --untracked-files=all \
-	| sed -n '/Changes not staged for commit/,$p' \
+	| sed -nE '/Changes not staged for commit|Untracked files/,$p' \
 	| fpp -c git-add
 git status
