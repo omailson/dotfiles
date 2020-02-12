@@ -10,9 +10,34 @@ fi
 source "$DOTFILES_PATH"/sources/ask.sh
 ## END OF IMPORT ask() FUNCTION
 
-DEFAULT_BOOKMARK_PLACE="$HOME"
+
+## CONSTANTS
+ROOT_BOOKMARK_PLACE="$HOME"
+## END OF CONSTANTS
+
 
 ## FUNCTIONS
+function find_closest_bookmark_place() {
+	local previous_place current_place
+
+	previous_place=""
+	current_place="$PWD"
+	while [ "$previous_place" != "$current_place" ]
+	do
+		if [ -e "$current_place"/.goto ]
+		then
+			echo "$current_place"
+			return 0
+		fi
+
+		cd ..
+		previous_place="$current_place"
+		current_place="$PWD"
+	done
+
+	return 1
+}
+
 function show_help() {
 	cat << EOF
 $(basename $0) -a <bookmark_name> [bookmark_location]
@@ -21,7 +46,7 @@ $(basename $0) -a <bookmark_name> [bookmark_location]
 	bookmark_name
 		The name of the bookmark
 	bookmark_location
-		To which .goto file the bookmark will be added (default $HOME)
+		To which .goto file the bookmark will be added (default $DEFAULT_BOOKMARK_PLACE)
 
 	Options
 		-a
@@ -34,6 +59,16 @@ function show_error() {
 	exit 1
 }
 ## END OF FUNCTIONS
+
+
+## INITIALIZATION
+DEFAULT_BOOKMARK_PLACE="$ROOT_BOOKMARK_PLACE"
+CLOSEST_BOOKMARK_PLACE=$(find_closest_bookmark_place)
+if [ "$?" -eq 0 ]
+then
+	DEFAULT_BOOKMARK_PLACE="$CLOSEST_BOOKMARK_PLACE"
+fi
+## END OF INITIALIZATION
 
 
 ## ARGUMENTS PARSING
