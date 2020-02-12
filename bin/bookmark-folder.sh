@@ -10,8 +10,7 @@ fi
 source "$DOTFILES_PATH"/sources/ask.sh
 ## END OF IMPORT ask() FUNCTION
 
-BOOKMARK_NAME="$1"
-BOOKMARK_PLACE="$HOME"
+DEFAULT_BOOKMARK_PLACE="$HOME"
 
 ## FUNCTIONS
 function show_help() {
@@ -37,6 +36,7 @@ function show_error() {
 ## END OF FUNCTIONS
 
 
+## ARGUMENTS PARSING
 # Options parser
 case "$1" in
 	-h|--help)
@@ -52,8 +52,22 @@ case "$1" in
 			show_error "Too many arguments. You don't have to pass a bookmark name when using -a"
 		fi
 		;;
+	*)
+		BOOKMARK_NAME="$1"
+		;;
 esac
 
+# Set $BOOKMARK_PLACE (if given, otherwise use default)
+if [ -n "$2" ]
+then
+	BOOKMARK_PLACE="$2"
+else
+	BOOKMARK_PLACE="$DEFAULT_BOOKMARK_PLACE"
+fi
+## END OF ARGUMENTS PARSING
+
+
+## VALIDATIONS
 # Check if $BOOKMARK_NAME is valid
 if [ -z "$BOOKMARK_NAME" ]
 then
@@ -61,17 +75,12 @@ then
 	show_error "A name for the bookmark is required"
 fi
 
-# Set $BOOKMARK_PLACE (if given, otherwise use default)
-if [ -n "$2" ]
-then
-	BOOKMARK_PLACE="$2"
-fi
-
 # Check if $BOOKMARK_PLACE is a directory
 if [ ! -d "$BOOKMARK_PLACE" ]
 then
 	show_error "$BOOKMARK_PLACE is not a valid directory"
 fi
+## END OF VALIDATIONS
 
 GOTO_FILE="$BOOKMARK_PLACE"/.goto
 echo -e "Will create a bookmark called \033[1m$BOOKMARK_NAME\033[m pointing to \033[1m$PWD\033[m in \033[1m$GOTO_FILE\033[m"
