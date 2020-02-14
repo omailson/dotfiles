@@ -28,7 +28,7 @@ function __format_folder_info() {
 	local git_prefix=$(git rev-parse --show-prefix 2>/dev/null)
 	git_prefix=${git_prefix%/}
 	__CK "1;34" "${1%$git_prefix}"
-	__CK "34" "$git_prefix"
+	__CK "35" "$git_prefix"
 }
 
 # Repeats a given string N times
