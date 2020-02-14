@@ -14,4 +14,7 @@ export PHABRICATOR_BOT=$PHABRICATOR_PATH/phabricator/irc.json
 # NodeJS
 export NODE_PATH="/usr/lib/node_modules/"
 
+# goto-dev
+export GOTOFOLDER_SCRIPT_PATH_DEV="/home/mailson/dev/goto-folder"
+
 # vim:ft=sh

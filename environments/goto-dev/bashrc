@@ -1,0 +1,10 @@
+if [ -z "$GOTOFOLDER_SCRIPT_PATH_DEV" ]
+then
+	echo 'Error: You need to set a path to a goto-folder local repository in $GOTOFOLDER_SCRIPT_PATH_DEV'
+	echo "See $DOTFILES_PATH/local.bashrc.template for help"
+	return 1
+fi
+
+ENV_NAME="goto-dev"
+source "$GOTOFOLDER_SCRIPT_PATH_DEV"/goto.bash
+source "$GOTOFOLDER_SCRIPT_PATH_DEV"/goto-completion.bash
