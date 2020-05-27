@@ -83,6 +83,15 @@ else
 	PS1_SEP="―"
 fi
 
+# Check for iTerm integration
+if [ "$TERM_PROGRAM" = "iTerm.app" ]
+then
+	# Add iterm2 prompt mark (https://www.iterm2.com/documentation-shell-integration.html)
+	PS1_ITERM2_PROMPT_MARK='\[$(iterm2_prompt_mark)\]'
+else
+	PS1_ITERM2_PROMPT_MARK=''
+fi
+
 PS1_SEPARATOR='$(__CK "$(__status_color)" "$(__repeat ${COLUMNS:-3} ${PS1_SEP})")'
 PS1_USERINFO='$(__CK "0;32" "\u")$(__CK "1;37" "@")$(__CK "0;32" "\h")'
 PS1_FOLDERINFO='$(__format_folder_info "\w")'
@@ -92,7 +101,7 @@ PS1_VENV='$(__CK "1;32" "$(__venv_name " {%s}")")'
 PS1_JOBS='\[\e[31m\]$(__dotfiles_jobs "\j")\[\e[m\]'
 PS1_INPUT='\[\e[1;32m\]\$\[\e[m\]' # Ctrl+A won't work on long lines if using __CK
 PS1_RIGHT_ALIGNED='$(__align_to_right "")'
-PS1="$PS1_SEPARATOR\n$PS1_USERINFO $PS1_FOLDERINFO$PS1_GIT$PS1_ENV$PS1_VENV$PS1_RIGHT_ALIGNED\n$PS1_INPUT$PS1_JOBS "
+PS1="$PS1_SEPARATOR\n$PS1_USERINFO $PS1_FOLDERINFO$PS1_GIT$PS1_ENV$PS1_VENV$PS1_RIGHT_ALIGNED\n$PS1_ITERM2_PROMPT_MARK$PS1_INPUT$PS1_JOBS "
 # }}}1
 
 source "$DOTFILES_PATH/sources/aliases.bash"
