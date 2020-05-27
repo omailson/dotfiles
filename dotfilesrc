@@ -24,6 +24,12 @@ function __CK() {
 	printf "\033[$1m$2\033[m"
 }
 
+function __align_to_right() {
+	# TODO check when len($1) > $COLUMNS
+	local pos=$(($COLUMNS - ${#1} + 1))
+	printf "\033[s\033[${pos}G$1\033[u"
+}
+
 # Returns the subfolder of the workspace (if any)
 # eg: Workspace: /path/to/project
 #     CWD: /path/to/project/libs
@@ -85,7 +91,8 @@ PS1_ENV='$(__CK "1;37" "$(__environment_name " [%s]")")'
 PS1_VENV='$(__CK "1;32" "$(__venv_name " {%s}")")'
 PS1_JOBS='\[\e[31m\]$(__dotfiles_jobs "\j")\[\e[m\]'
 PS1_INPUT='\[\e[1;32m\]\$\[\e[m\]' # Ctrl+A won't work on long lines if using __CK
-PS1="$PS1_SEPARATOR\n$PS1_USERINFO $PS1_FOLDERINFO$PS1_GIT$PS1_ENV$PS1_VENV\n$PS1_INPUT$PS1_JOBS "
+PS1_RIGHT_ALIGNED='$(__align_to_right "")'
+PS1="$PS1_SEPARATOR\n$PS1_USERINFO $PS1_FOLDERINFO$PS1_GIT$PS1_ENV$PS1_VENV$PS1_RIGHT_ALIGNED\n$PS1_INPUT$PS1_JOBS "
 # }}}1
 
 source "$DOTFILES_PATH/sources/aliases.bash"
