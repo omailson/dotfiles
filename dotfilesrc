@@ -44,7 +44,7 @@ function __workspace_suffix() {
 # Given a path, print it using different colors for the prefix and suffix
 # This is useful to differentiate whether you are in the root of a project or in one of its subfolders
 function __format_folder_info() {
-	local workspace_suffix=$(__workspace_suffix) # Check what part of the path is the suffix
+	local workspace_suffix=$(__workspace_suffix "$1") # Check what part of the path is the suffix
 	__CK "1;34" "${1%$workspace_suffix}" # Print the path, excluding its suffix
 	__CK "35" "$workspace_suffix" # Print the path suffix (in a different color from the normal path)
 }
