@@ -1,0 +1,3 @@
+#!/bin/bash
+
+/bin/bash "$DOTFILES_PATH"/modules/runcached/runcached.bash "$@"

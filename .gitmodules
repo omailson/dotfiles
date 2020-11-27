@@ -7,3 +7,6 @@
 [submodule "modules/goto-folder"]
 	path = modules/goto-folder
 	url = https://github.com/omailson/goto-folder.git
+[submodule "modules/runcached"]
+	path = modules/runcached
+	url = https://gist.github.com/c7971a0f3d7a3b9fdb71c5621c8e41c5.git
