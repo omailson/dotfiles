@@ -31,14 +31,24 @@ function __align_to_right() {
 }
 
 # Returns the subfolder of the workspace (if any)
+#
+# Alternatevely, you can implement your own __workspace_suffix_custom if you
+# want to override the default behavior
+#
+# Custom function may fallback to default behavior if it returns non-zero
 # eg: Workspace: /path/to/project
 #     CWD: /path/to/project/libs
 #     Returns: libs
 function __workspace_suffix() {
-	local git_prefix=$(git rev-parse --show-prefix 2>/dev/null)
-	git_prefix=${git_prefix%/}
+	if ! __workspace_suffix_custom "$1" 2> /dev/null
+	then
+		# Neat trick. This default behavior will only execute if the custom function doesn't exist, or if it returns non-zero
+		# This makes the custom function optional and gives it the possibility to fallback to default behavior if needed.
+		local git_prefix=$(git rev-parse --show-prefix 2>/dev/null)
+		git_prefix=${git_prefix%/}
 
-	printf "$git_prefix"
+		printf "$git_prefix"
+	fi
 }
 
 # Given a path, print it using different colors for the prefix and suffix
