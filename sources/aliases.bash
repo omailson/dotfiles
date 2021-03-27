@@ -30,5 +30,5 @@ alias ga='git-add-fpp'
 alias gs='git show --pretty=medium'
 
 alias gcommitwip='git commit -m WIP'
-alias gammend='git commit --amend'
+alias gamend='git commit --amend'
 alias ad='arc diff HEAD~1 --allow-untracked'
