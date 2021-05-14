@@ -37,3 +37,6 @@ witch() {
 		fi
 	fi
 }
+
+# TODO treat case when there are multiple types (eg: `type -a cerberus` gives an alias and a file (try `type -ta cerberus`))
+#      we need to decide what to do when there are multiple types. specially when it's a function or a text file

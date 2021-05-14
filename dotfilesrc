@@ -123,6 +123,10 @@ source "$DOTFILES_PATH/sources/ask.sh"
 source "$DOTFILES_PATH/sources/witch.bash"
 source "$DOTFILES_PATH/sources/git-root.bash"
 source "$DOTFILES_PATH/sources/save_function.bash"
+# TODO add a placeholder intead of \[$(iterm2_prompt_mark)\] (eg: %ITERM2_INTEGRATION%)
+# TODO # source "$DOTFILES_PATH"/sources/iterm2_integration.bash (push with this line commented-out (?) maybe not necessary since iterm2_integration already checks if script exists)
+# TODO the above script will simply replace the placeholder by \[$(iterm2_prompt_mark)\] and run the iterm2_integration command
+# TODO set: PS1=without_placeholder($PS1) to remove the placeholder if it's still there
 source "$DOTFILES_PATH/sources/modules.bash"
 
 source "$DOTFILES_PATH/sources/completion.bash"
