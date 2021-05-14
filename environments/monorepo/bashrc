@@ -1,0 +1,20 @@
+### Special configuration for monorepos (in general)
+## Monorepos tend to be large on files, so we need to deal with it in a special manner
+
+ENV_NAME="monorepo"
+
+# Git aliases
+alias k='glog --graph --all -- .'
+alias ko='glog --graph origin/master -- .'
+
+alias ks='git status -- .'
+alias ksa='git status'
+
+alias kf='git diff -- .'
+alias kfa='git diff'
+
+alias kfc='git diff --cached -- .'
+alias kfca='git diff --cached'
+
+alias ga='git-add-fpp -- .'
+alias gaa='git-add-fpp'
