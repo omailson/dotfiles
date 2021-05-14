@@ -28,7 +28,9 @@ alias kfc='git diff --cached'
 alias ga='git-add-fpp'
 
 alias gs='git show --pretty=medium'
+alias glog='git log --date=relative --pretty="format:%C(auto,yellow)%h %C(auto,blue)%>(12,trunc)%ad %C(auto,green)%<(7)%al %C(auto,reset)%s%C(auto,red)% gD% D"'
 
 alias gcommitwip='git commit -m WIP'
 alias gamend='git commit --amend'
 alias ad='arc diff HEAD~1 --allow-untracked'
+alias adwip='ad --nounit --nolint --plan-changes --excuse wip'

@@ -26,3 +26,5 @@
 [alias]
 	update = remote update --prune
 	backup = !gitbackup.sh
+
+# vim:ft=gitconfig
