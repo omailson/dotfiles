@@ -9,4 +9,13 @@ fi
 git status --untracked-files=all "${@}" \
 	| sed -nE '/Changes not staged for commit|Untracked files|Unmerged paths/,$p' \
 	| fpp -c git-add
-git status "${@}"
+
+FPP_STATUS=$?
+
+if [ $FPP_STATUS -ne 0 ]
+then
+	exit $FPP_STATUS
+fi
+
+# Ask next step
+git-ask.sh
