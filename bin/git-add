@@ -6,6 +6,7 @@ GA_YES=0
 GA_NO=1
 GA_PATCH=2
 GA_RELOAD=3
+GA_EDIT=4
 GA_HELP=100
 GA_QUIT=127
 
@@ -13,7 +14,7 @@ ask_add() {
     # Based on http://djm.me/ask
     while true; do
 
-		prompt="Y/n/p/r/q/?"
+		prompt="Y/n/e/p/r/q/?"
 		default=Y
 
         # Ask the question - use /dev/tty in case stdin is redirected from somewhere else
@@ -28,6 +29,7 @@ ask_add() {
         case "$REPLY" in
 			Y*|y*) return $GA_YES    ;;
 			N*|n*) return $GA_NO     ;;
+			E*|e*) return $GA_EDIT   ;;
 			P*|p*) return $GA_PATCH  ;;
 			R*|r*) return $GA_RELOAD ;;
 			\?)    return $GA_HELP   ;;
@@ -47,6 +49,7 @@ print_usage() {
 cat << EOF
 y - add this file
 n - do no add this file
+e - open file in \$EDITOR
 p - add parts of the file (git add --patch)
 r - reload diff with most recent file changes
 ? - print help
@@ -87,6 +90,10 @@ do
 			;;
 		$GA_NO)
 			# do nothing
+			;;
+		$GA_EDIT)
+			vim "$1"
+			ASK_AGAIN=1
 			;;
 		$GA_PATCH)
 			git add -p "$1"
