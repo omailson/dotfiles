@@ -17,8 +17,12 @@ ask() {
             default=
         fi
 
-        # Ask the question - use /dev/tty in case stdin is redirected from somewhere else
-        read -p "$1 [$prompt] " REPLY </dev/tty
+        # Ask the question using /dev/tty to ensure input comes from the terminal.
+        if [ -n "$ZSH_VERSION" ]; then
+            read "?$1 [$prompt] " REPLY </dev/tty
+        else
+            read -p "$1 [$prompt] " REPLY </dev/tty
+        fi
 
         # Default?
         if [ -z "$REPLY" ]; then
