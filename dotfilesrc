@@ -86,11 +86,11 @@ function __dotfiles_jobs() {
 	fi
 }
 
-if [ -z "$DISPLAY" ]
+if [ "$(locale charmap)" = "UTF-8" ]
 then
-	PS1_SEP="-"
+    PS1_SEP="─"
 else
-	PS1_SEP="―"
+    PS1_SEP="-"
 fi
 
 # Check for iTerm integration
