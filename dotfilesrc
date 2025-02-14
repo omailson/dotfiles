@@ -42,6 +42,7 @@ then
 	source "$DOTFILES_PATH/sources/aliases.bash"
 	source "$DOTFILES_PATH/sources/environment.zsh"
 	source "$DOTFILES_PATH/sources/venv.zsh"
+	source "$DOTFILES_PATH/sources/git-prompt.sh"
 fi
 
 
