@@ -58,7 +58,7 @@ fi
 PS1_SEPARATOR="%(?.%F{white}.%F{red})$(__repeat ${COLUMNS:-3} ${PS1_SEP})%f"
 PS1_USERINFO="%F{green}%n%B%F{white}@%b%F{green}%m%f"
 PS1_FOLDERINFO='$(__format_folder_info $PWD)'
-PS1_GIT="%{$(__CK '1;37' "$(__git_ps1 ' (%s)' 2>/dev/null)")%}"
+PS1_GIT='%B%F{white}$(__git_ps1 " (%s)" 2>/dev/null)%b%f'
 PS1_ENV='%B%F{white}$(__environment_name " [%s]")%b%f'
 PS1_VENV='%B%F{green}$(__venv_name " {%s}")%f%b'
 PS1_JOBS="%(1j.%F{red}+%j%f.)"
