@@ -16,8 +16,8 @@ export ENVIRONMENT_FOLDER="$DOTFILES_PATH/environments"
 
 environment() {
   if [[ $# -eq 0 ]]; then
-    if [[ -e bashrc ]]; then
-      source bashrc
+    if [[ -e zshrc ]]; then
+      source zshrc
     else
       echo "Can't find environment file"
       return 1
@@ -27,7 +27,7 @@ environment() {
       if [[ -n "$2" && "$2" = "--link" ]]; then
         ln -s "$ENVIRONMENT_FOLDER/$1"/* .
       else
-        source "$ENVIRONMENT_FOLDER/$1/bashrc"
+        source "$ENVIRONMENT_FOLDER/$1/zshrc"
       fi
     else
       echo "Invalid environment"
@@ -52,7 +52,7 @@ compdef _environment_comp environment
 __environment_name() {
   if [[ -n "$ENV_NAME" ]]; then
     printf "$1" "$ENV_NAME"
-  elif [[ -e bashrc ]]; then
+  elif [[ -e zshrc ]]; then
     printf "$1" "*"
   else
     printf ""
