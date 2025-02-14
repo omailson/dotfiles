@@ -1,32 +1,35 @@
 # This is a general-purpose function to ask Yes/No questions in Bash, either
 # with or without a default answer. It keeps repeating the question until it
 # gets a valid answer.
+# http://djm.me/ask
 
 ask() {
-    # http://djm.me/ask
+    local ask_prompt
+    local ask_default
+
     while true; do
 
         if [ "${2:-}" = "Y" ]; then
-            prompt="Y/n"
-            default=Y
+            ask_prompt="Y/n"
+            ask_default=Y
         elif [ "${2:-}" = "N" ]; then
-            prompt="y/N"
-            default=N
+            ask_prompt="y/N"
+            ask_default=N
         else
-            prompt="y/n"
-            default=
+            ask_prompt="y/n"
+            ask_default=
         fi
 
         # Ask the question using /dev/tty to ensure input comes from the terminal.
         if [ -n "$ZSH_VERSION" ]; then
-            read "?$1 [$prompt] " REPLY </dev/tty
+            read "REPLY?$1 [$ask_prompt] "
         else
-            read -p "$1 [$prompt] " REPLY </dev/tty
+            read -p "$1 [$ask_prompt] " REPLY </dev/tty
         fi
 
         # Default?
         if [ -z "$REPLY" ]; then
-            REPLY=$default
+            REPLY=$ask_default
         fi
 
         # Check if the reply is valid

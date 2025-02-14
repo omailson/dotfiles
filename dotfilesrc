@@ -43,6 +43,7 @@ then
 	source "$DOTFILES_PATH/sources/environment.zsh"
 	source "$DOTFILES_PATH/sources/venv.zsh"
 	source "$DOTFILES_PATH/sources/git-prompt.sh"
+	source "$DOTFILES_PATH/sources/ask.sh"
 fi
 
 
