@@ -46,6 +46,7 @@ then
 	source "$DOTFILES_PATH/sources/ask.sh"
 	source "$DOTFILES_PATH/sources/witch.zsh"
 	source "$DOTFILES_PATH/sources/git-root.zsh"
+	source "$DOTFILES_PATH/sources/modules.zsh"
 fi
 
 
