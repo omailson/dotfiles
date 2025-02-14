@@ -7,7 +7,7 @@ alias cnf='pkgfile -v -b --'
 alias webserver='python2 -m SimpleHTTPServer'
 
 # ls aliases
-if [ "$(uname)" == "Darwin" ]
+if [ "$(uname)" = "Darwin" ]
 then
 	alias ls='ls -G'
 else
