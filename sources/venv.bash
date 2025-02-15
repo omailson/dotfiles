@@ -7,7 +7,7 @@ __venv_name() {
 	# Also, check whether the venv is activated
 	if [ -n "$VIRTUAL_ENV_DISABLE_PROMPT" -a -n "$VIRTUAL_ENV" ]
 	then
-		project_name=$(basename $(dirname "$VIRTUAL_ENV"))
+		project_name=$(basename "$VIRTUAL_ENV")
 		printf -- "$1" "venv:$project_name"
 	else
 		printf -- ""

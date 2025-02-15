@@ -23,7 +23,7 @@ witch() {
 		WHICH=$(which "$1")
 		FILE_DATA=$(file "$WHICH")
 		echo "$FILE_DATA"
-		if echo "$FILE_DATA" | grep -q 'text$'
+		if echo "$FILE_DATA" | grep -q 'ASCII text executable$'
 		then
 			if [ -n "$EDITOR" ]
 			then
